@@ -1,103 +1,136 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+var $btn = document.getElementById("submit");
+var $form = document.getElementById("form")
 
-    
-  </head>
+function signIn() {
+  if ($form.checkValidity()) {
+    $btn.classList.add('pending');
+    window.setTimeout(function(){ $btn.classList.add('granted'); }, 1500);
+  }
+}
+
+$btn.addEventListener("click", signIn);
+</script>
+<link rel="stylesheet" href="style1.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+   integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+   integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+   crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+   integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+   crossorigin="anonymous"></script>
+
+   <title>GetMed</title>
+
+</head>
   <body>
-    <f:form  action="/rty" role="form" modelAttribute="sign" method="post">
-    <table>
-        <tr >
-            <%-- <td>MID:</td>
+ 
+    <div class="tile">
+     
+      <div class="tile-header">
+       <h2 style="color:teal; opacity: .75; font-size: 4rem; display: flex; justify-content: center; align-items: center; height: 100%;">Fill Out</h2>
+      </div>
+      
+      <div class="tile-body">
+        <f:form id="form" action="/addmedicine" method="post" modelAttribute="addmed">
+          <label class="form-input">
+            <i class="material-icons">person</i>
+            <f:input path="name" type="text" autofocus="true" name="name" required="true" />
+            <span class="label">Medicine Name</span>
+            <div class="underline"></div>
+          </label>
+          
+          <label class="form-input">
+            <i class="material-icons">person</i>
+            <f:input path="brand" type="text" name="brand" required="true" />
+            <span class="label">Brand Name</span>
+            <div class="underline"></div>
+          </label>
+          
+          
+          <label class="form-input">
+            <i class="material-icons">person</i>
+            <f:input path="brand" type="number" name="brand" step="0.1" required="true" />
+            <span class="label">Price</span>
+            <div class="underline"></div>
+          </label>
+
+
+          <label class="form-input">
+            <i class="material-icons">person</i>
+            <f:input type="number" path="stock" name="stock" required="true" />
+            <span class="label">Stock</span>
+            <div class="underline"></div>
+          </label>
+
+
+          <label class="form-input">
+            <i class="material-icons">person</i>
+            <f:input type="text" name="disease" path="disease" required="true" />
+            <span class="label">disease</span>
+            <div class="underline"></div>
+          </label>
+
+          
+
+          <label class="form-input">
+            <i class="material-icons">person</i>
+            <f:input path="city" type="text"   name="city" required="true" />
+            <span class="label">City</span>
+            <div class="underline"></div>
+          </label>
+
+
+          <label class="form-input">
+            <i class="material-icons">person</i>
+            <f:input path="expiryDate" type="date" placeholder="expiry Date" name="expiryDate" required="true" />
+            <span class="label"></span>
+            <div class="underline"></div>
+          </label>
+          <div class="submit-container clearfix" style="margin-top: 2rem;">          
             
-            <td>
-            <f:input class="form-group" path="mid" type="number"  name="mid"  />
-                                         
-            <f:errors path="firstName"/>
-                                             </td> --%>
-            </tr>
-        <tr><td>Name:</td>
-            <td><f:input class="form-group" path="name" type="text"  name="name" />
-  <f:errors path="name"/></td>
-        </tr>
-
-<tr >
-
-<td>brand:</td>
-<td><f:input path="brand" class="form-group" type="text"  name="brand"/>
-                     <f:errors path="brand"/> </td>
-</tr>
-                                        
- <tr >
-            <td>price:</td>
+            <button id="submit"  role="button" type="submit"  class="btn btn-irenic float-left btn-lg" tabindex="0">
+              <span>Add Medicine</span>
+            </button>
+            <input id="submit" value="clear" role="button" type="reset" class="btn btn-irenic float-right btn-lg" tabindex="0">
+              
             
-            <td>
-            <f:input class="form-group" path="price" type="number"  name="price" step="0.1" />
-                                         
-         <f:errors path="price"/> 
-                                                                                                            </td>
-            </tr>
- <tr >
-            <td>stock:</td>
-            
-            <td>
-            <f:input class="form-group" path="stock" type="number"  name="stock"  />
-                                         
-           <f:errors path="stock"/>
-                                                                                                            </td>
-            </tr>
-            
-             <tr><td>disease:</td>
-            <td><f:input class="form-group" path="disease" type="text"  name="disease" />
-  <f:errors path="disease"/> </td>
-        </tr>
-
-  <tr><td>city:</td>
-            <td><f:input class="form-group" path="city" type="text"  name="city" />
- <f:errors path="city"/> </td>
-        </tr>
-<tr>
-<td>expiryDate:</td>
-            
-            
-            <td>
-           
-<f:input path="expiryDate" name="expiryDate" type="date"  />
-            
-                             
-          <f:errors path="expiryDate"/> 
-                                                                                                            </td>
-            </tr> 
-
-
-</table>
-
-
-<button type="submit" class="btn btn-outline-secondary btn-lg" >Submit</button>
-<button type="reset" class="btn btn-outline-secondary btn-lg">Reset</button>
-
-</f:form>
-
-
-
-
+            <div class="login-pending">
+              <div class=spinner>
+                <span class="dot1"></span>
+                <span class="dot2"></span>
+              </div>
+              
+              <div class="login-granted-content">
+                <i class="material-icons">done</i>
+              </div>
+            </div>
+          </div>
+        </f:form>
+     
+      </div>
+    </div>
+      
+     
+    
   </body>
 
-
 </html>
+

@@ -1,5 +1,7 @@
 package com.project.controller;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -8,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,6 +19,7 @@ import com.project.model.RecoveryBean;
 import com.project.model.UserBean;
 import com.project.service.AdminDao;
 import com.project.service.AdminFunction;
+import com.project.service.RecoveryDao;
 import com.project.service.UserDao;
 import com.project.service.Validation;
 
@@ -29,7 +31,8 @@ public class MainController {
 	UserDao userDao;
 	@Autowired
 	AdminFunction adminFunction;
-
+	@Autowired
+	RecoveryDao recoveryDao;
 	@Autowired
 	private Validation validation;
 
@@ -41,8 +44,9 @@ public class MainController {
 
 	}
 
-	@RequestMapping("/log/{role}")
-	public String login(@PathVariable("role") String role,@ModelAttribute("login")LoginBean login ,HttpSession session, Model m) {
+	@RequestMapping("/log")
+	public String login(String role, @ModelAttribute("login") LoginBean login,
+			HttpSession session, Model m) {
 		String page = "login";
 		m.addAttribute("err", 0);
 		session.setAttribute("role", role);
@@ -58,7 +62,8 @@ public class MainController {
 	}
 
 	@RequestMapping("/home")
-	public String home(@Valid @ModelAttribute("signup") UserBean userBean, BindingResult br, HttpSession session,Model m) {
+	public String home(@Valid @ModelAttribute("signup") UserBean userBean, BindingResult br, HttpSession session,
+			Model m) {
 		String page = "recovery";
 		m.addAttribute("rb", new RecoveryBean());
 		if (br.hasErrors()) {
@@ -72,58 +77,65 @@ public class MainController {
 			} else {
 				userBean.setPassword(adminFunction.encryption(userBean.getPassword()));
 				userDao.save(userBean);
-				//page = "userHome";
+				// page = "userHome";
 			}
 			return page;
 		}
 	}
 
 	@RequestMapping("/main")
-	public String mainPage(@ModelAttribute("login")LoginBean login, HttpSession session, Model model) {
+	public String mainPage(@Valid @ModelAttribute("login") LoginBean login, BindingResult br, HttpSession session,
+			Model model) {
 
-		// System.out.println(login.getEmail()+" "+login.getPassword()+" here");
 		String role = (String) session.getAttribute("role");
 		String page = "adminHome";
-		if (login.getEmail().equals("")) {
-			model.addAttribute("err", 2);
+		
+		if(br.hasErrors())
+		{	model.addAttribute("err", 0);
 			return "login";
 		}
-		if (login.getPassword().equals("")) {
-			model.addAttribute("err", 3);
-			return "login";
-		}
-
 		if (role.equals("us")) {
-			
-			UserBean ub = userDao.validateUser(login.getEmail(), adminFunction.encryption(login.getPassword()));
+
+			UserBean ub = userDao.validateUser(login.getEmail().trim(), adminFunction.encryption(login.getPassword().trim()));
 			if (ub == null) {
 				model.addAttribute("err", 1);
+//				System.out.println(login.getEmail()+" "+adminFunction.encryption(login.getPassword().trim()));
 				return "login";
 			}
+			
+			Optional<UserBean> o=userDao.findById(login.getEmail().trim());
+			if(o.isPresent())
+			session.setAttribute("id",o.get());
+			
 			page = "userHome";
-		}else
-		{
-			AdminBean ab=adminDao.validateAdmin(login.getEmail(), adminFunction.encryption(login.getPassword()));
+		} else {
+			AdminBean ab = adminDao.validateAdmin(login.getEmail().trim(), adminFunction.encryption(login.getPassword().trim()));
 			if (ab == null) {
 				model.addAttribute("err", 1);
+				System.out.println(1);
 				return "login";
+				
 			}
-			//page = "userHome";
+			Optional<AdminBean> o=adminDao.findById(login.getEmail().trim());
+			if(o.isPresent())
+			session.setAttribute("id",o.get());
+			
+
 		}
 
 		return page;
 
 	}// main
-	
+
 	@PostMapping("/recoverymap")
-	public String recovery(@Valid @ModelAttribute("rb") RecoveryBean recoveryBean,BindingResult bindingResult) {
+	public String recovery(@Valid @ModelAttribute("rb") RecoveryBean recoveryBean, BindingResult bindingResult,HttpSession session) {
 		String page = "recovery";
-		if(bindingResult.hasErrors())
-		{
+		if (bindingResult.hasErrors()) {
 			return "recovery";
 		}
-	return "choose";
+		recoveryBean.setDesgination((String)session.getAttribute("role"));
+		recoveryDao.save(recoveryBean);
+		return "choose";
 	}
-	
 
 }

@@ -1,8 +1,8 @@
 package com.project.model;
 
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +14,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+
 
 @Entity
 @Table(name = "medicinetable")
@@ -48,10 +49,17 @@ private String city;
 private Integer sales;
 
 @DateTimeFormat(pattern = "yyyy-MM-dd")
-@NotNull(message = "Please specify expiryDate")
 private Date expiryDate;
 
-private Integer adminId;
+private String adminId;
+
+public String getAdminId() {
+	return adminId;
+}
+
+public void setAdminId(String adminId) {
+	this.adminId = adminId;
+}
 
 public Integer getMid() {
 return mid;

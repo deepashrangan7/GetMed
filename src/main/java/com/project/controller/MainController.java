@@ -143,14 +143,20 @@ public class MainController {
 
 	@PostMapping("/recoverymap")
 	public String recovery(@Valid @ModelAttribute("rb") RecoveryBean recoveryBean, BindingResult bindingResult,
-			HttpSession session) {
+			HttpSession session,Model model) {
 		String page = "recovery";
 		if (bindingResult.hasErrors()) {
 			return "recovery";
 		}
+		String role=(String) session.getAttribute("role");
+		
+		
+		
 		recoveryBean.setDesgination((String) session.getAttribute("role"));
 		recoveryDao.save(recoveryBean);
-		return "choose";
+		model.addAttribute("err", 0);
+		model.addAttribute("login",new LoginBean());
+		return "login";
 	}
 
 }

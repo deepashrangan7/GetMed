@@ -460,7 +460,7 @@ System.out.println(msg);
     <div class="tile">
      
       <div class="tile-header">
-       <h2 style="color:teal; opacity: .75; font-size: 4rem; display: flex; justify-content: center; align-items: center; height: 100%;"><u> SIGN IN</u></h2>
+       <h2 style="color:black; opacity: .75; font-size: 4rem; display: flex; justify-content: center; align-items: center; height: 100%;">SIGN IN</h2>
       </div>
       
       <div class="tile-body">
@@ -479,10 +479,10 @@ System.out.println(msg);
           <f:errors path="password"></f:errors>
           
           <div class="submit-container clearfix" style="margin-top: 2rem;">          
-            <input  role="button" type="submit" class="btn btn-irenic float-right" tabindex="0" value="login"/>
+            <input  role="button" type="submit" class="btn btn-outline-dark float-left btn-lg" tabindex="0" value="login"/>
             
-            <a id="submit" href="/sign" role="button" type="button" class="btn btn-irenic float-left" tabindex="0">
-              <span>SignUp</span>
+            <a  href="/sign" role="button" type="button" class="btn btn-outline-dark float-right btn-lg" tabindex="0">
+             SignUp
             </a>
               
             
@@ -501,7 +501,7 @@ System.out.println(msg);
         </f:form>
       <br/><br/>
       <p style="color:red;"><%=msg%> </p>
-      <p style="text-align: center;font-size: large;"><a href="#">forgot Password?</a></p>
+      <p style="text-align: center;font-size: large;color:black;"><a href="#">forgot Password?</a></p>
     
       </div>
     </div>

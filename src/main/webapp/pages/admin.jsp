@@ -69,6 +69,7 @@
 	<br />
 
 
-	<a href="/adhome" style="text-align: center;"class="btn btn-outline-dark btn-lg">Medicine Details</a>
+	<p style="text-align: center;"><a href="/adhome"  class="btn btn-outline-dark btn-lg">Medicine Details</a>
+</p>
 </body>
 </html>

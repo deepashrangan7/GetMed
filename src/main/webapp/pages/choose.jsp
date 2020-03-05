@@ -52,7 +52,7 @@ $btn.addEventListener("click", signIn);
      
         <div class="container" style="width:120%;">
          
-          <h2 style="color:black; opacity: .75; font-size: 2rem; display: flex; height: 100%; text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Who Are You?</h2>
+          <h2 style="color:black; opacity: .75; font-size: 2rem; display: flex; height: 100%; text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose Role</h2>
      
           <br /><br />
           

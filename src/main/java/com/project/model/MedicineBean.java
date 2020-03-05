@@ -11,7 +11,6 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -45,7 +44,9 @@ public class MedicineBean {
 	private Integer sales;
 
 	private String adminId;
-
+	
+	private String type;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Future(message = "Already Medicine Expired")
 	private Date expiryDate;
@@ -129,6 +130,14 @@ public class MedicineBean {
 
 	public void setSales(Integer sales) {
 		this.sales = sales;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

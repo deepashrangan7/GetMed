@@ -47,19 +47,18 @@
 <br/><br/>
 
 <table class="table table-hover" style="padding-top:5em;">
-  <caption><a href="/addm" style="text-align: center;" class="btn btn-outline-dark btn-lg">Add Medicine</a>
-  </caption>
+  
   <thead>
     <tr>
       <th scope="col">Medicine Name</th>
       <th scope="col">Brand</th>
       <th scope="col">Price</th>
-      <th scope="col">Stock</th>
+      <th scope="col">InStock</th>
      	<th scope="col">Disease</th>
      	<th scope="col">City</th>
     <th scope="col"> Expiry Date</th>
     <th scope="col">Edit</th>
-    <th scope="col">Update</th>
+    <th scope="col">Update Stock</th>
     
     </tr>
   </thead>
@@ -81,5 +80,8 @@
   </c:forEach>
      </tbody>
 </table>
+
+<p style="text-align: center;"><a href="/addm" style="text-align: center;" class="btn btn-outline-dark btn-lg">Add Medicine</a>
+  </p>
 </body>
 </html>

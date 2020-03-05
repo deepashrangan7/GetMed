@@ -31,6 +31,13 @@ public class MedicineBean {
 	@Min(value = 1, message = "price should not be less than 1")
 	private Double price;
 
+	@Override
+	public String toString() {
+		return "MedicineBean [mid=" + mid + ", name=" + name + ", brand=" + brand + ", price=" + price + ", stock="
+				+ stock + ", disease=" + disease + ", city=" + city + ", sales=" + sales + ", adminId=" + adminId
+				+ ", type=" + type + ", expiryDate=" + expiryDate + "]";
+	}
+
 	@NotNull(message = "stock should not be empty")
 	@Min(value = 1, message = "please enter stock")
 	private Integer stock;

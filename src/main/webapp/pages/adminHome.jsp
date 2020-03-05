@@ -74,7 +74,7 @@
       <td><c:out value="${med.city}"/></td>
       <td><fmt:formatDate value="${med.expiryDate}" pattern="dd-MM-yyyy"/>
   </td>
-      <td><a href="#" class="btn btn-outline-secondary btn-sm">Edit</a></td>
+      <td><a href="editMedicine?mid=${med.mid}" class="btn btn-outline-secondary btn-sm">Edit</a></td>
    	<td><a href="#" class="btn btn-outline-secondary btn-sm">Update</a></td>
     </tr>
   </c:forEach>

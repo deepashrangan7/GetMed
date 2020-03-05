@@ -1,4 +1,5 @@
 <%@page import="java.util.List"%>
+<%@page import="com.project.model.AdminBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -58,6 +59,8 @@
 				<li class="nav-item"><a class="nav-link text-light"
 					href="#work">CONTACT</a></li>
 				<li class="nav-item"><a class="nav-link text-light" href="#why">HELP</a></li>
+			<li class="nav-item"><a class="nav-link text-light" href="/logout">Logout</a></li>
+			
 			</ul>
 		</div>
 	</nav>
@@ -65,11 +68,42 @@
 	<br />
 	<br />
 	<br />
-	<br />
-	<br />
 
+<%
 
-	<p style="text-align: center;"><a href="/adhome"  class="btn btn-outline-dark btn-lg">Medicine Details</a>
+AdminBean ab=(AdminBean)session.getAttribute("id");
+String role="";
+String name=ab.getFirstName()+" "+ab.getLastName();
+if(ab.getRole()==1)
+	role="ADMIN";
+else
+	role="USER";
+
+Integer i=(Integer)session.getAttribute("addm");
+String msg="";
+if(i==1)
+	msg="Your Datails are submitted successfully";
+else if(i==2)
+	msg="Medicine Details Editted Successfully";
+else if(i==3)
+	msg="Stock Updated Successfully";
+else
+	msg="";
+%>
+<p style="font-size: 24px;text-align: center;font-weight: bold;"><%="Welcome "+name+" ("+role+")"%>
 </p>
+	<br />
+	<br />
+<p style="text-align: center;color:green;"><%=msg%></p>
+<br/>
+<br/>
+	<p style="text-align: center;"><a href="/adhome"  class="btn btn-outline-dark btn-lg">Medicine Information</a>
+	
+	
+</p>
+<br/>
+	<p style="text-align: center;"><a href="/viewupdate" class="btn btn-outline-dark btn-lg">Update Stocks</a></p>
+   
+
 </body>
 </html>

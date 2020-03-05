@@ -133,7 +133,7 @@
             </f:form>
             <br /><br />
             <%String role=(String)session.getAttribute("role"); %>
-            <p style="text-align: center;font-size: large;">Already Have Account? <a href=<%="/log/"+role%>>Login</a></p>
+            <p style="text-align: center;font-size: large;">Already Have Account? <a href=<%="/log?role="+role%>>Login</a></p>
 
         </div>
     </div>

@@ -47,7 +47,7 @@
 <br/><br/><br/>
 <br/><br/><br/>
 
-<h3 style="text-align: center;">Medicine Information</h3>
+<h3 style="text-align: center;">Stock Details</h3>
 <br/><br/>
 
 <table class="table table-hover" style="padding-top:5em;">
@@ -56,12 +56,9 @@
     <tr>
       <th scope="col">Medicine Name</th>
       <th scope="col">Brand</th>
-      <th scope="col">Price</th>
       <th scope="col">InStock</th>
-     	<th scope="col">Disease</th>
-     	<th scope="col">City</th>
-    <th scope="col"> Expiry Date</th>
-    <th scope="col">Edit</th>
+     <th scope="col"> Expiry Date</th>
+    <th scope="col">Update</th>
     
     </tr>
   </thead>
@@ -71,19 +68,14 @@
     
       <th ><c:out value="${med.name}"/></th>
       <td><c:out value="${med.brand}"/></td>
-      <td><c:out value="${med.price}"/></td>
       <td><c:out value="${med.stock}"/></td>
-      <td><c:out value="${med.disease}"/></td>
-      <td><c:out value="${med.city}"/></td>
-      <td><fmt:formatDate value="${med.expiryDate}" pattern="dd-MM-yyyy"/>
+      l<td><fmt:formatDate value="${med.expiryDate}" pattern="dd-MM-yyyy"/>
   </td>
-      <td><a href="editMedicine?mid=${med.mid}" class="btn btn-outline-secondary btn-sm">Edit</a></td>
+      <td><a href="updatemedicine?mid=${med.mid}" class="btn btn-outline-secondary btn-sm">Update Stock</a></td>
     </tr>
   </c:forEach>
      </tbody>
 </table>
 
-<p style="text-align: center;"><a href="/addm" style="text-align: center;" class="btn btn-outline-dark btn-lg">Add Medicine</a>
-  </p>
 </body>
 </html>

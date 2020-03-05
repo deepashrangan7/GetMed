@@ -21,7 +21,9 @@ public class AdminBean {
 	@Pattern(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$", message = "Type Valid emailId")
 	@NotBlank(message="email cant be empty")
 	private String emailId;
-
+	
+	private Integer role;
+	
 	@NotBlank(message = "FirstName should not be empty")
 	@Pattern(regexp = "[a-zA-Z ]+",message = "Should contain only alphabets")
 	private String firstName;
@@ -104,10 +106,20 @@ public class AdminBean {
 		this.password = password;
 	}
 
+
+	public Integer getRole() {
+		return role;
+	}
+
+	public void setRole(Integer role) {
+		this.role = role;
+	}
+
 	@Override
 	public String toString() {
-		return "AdminBean [emailId=" + emailId + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age
-				+ ", gender=" + gender + ", contact=" + contact + ", password=" + password + "]";
+		return "AdminBean [emailId=" + emailId + ", role=" + role + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", age=" + age + ", gender=" + gender + ", contact=" + contact + ", password=" + password
+				+ "]";
 	}
 
 }

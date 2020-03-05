@@ -3,27 +3,11 @@ package com.project.service;
 import org.springframework.stereotype.Service;
 
 import com.project.model.AdminBean;
-import com.project.model.UserBean;
+
 import java.util.*;
 
 @Service
 public class AdminFunction {
-
-	public AdminBean convert(UserBean userBean)
-	{
-		AdminBean adminBean =new AdminBean();
-		
-		adminBean.setAge(userBean.getAge());
-		adminBean.setContact(userBean.getContact());
-		adminBean.setEmailId(userBean.getEmailId());
-		adminBean.setFirstName(userBean.getFirstName());
-		adminBean.setLastName(userBean.getLastName());
-		adminBean.setGender(userBean.getGender());
-		String pass=userBean.getPassword();
-		adminBean.setPassword(encryption(pass));
-		
-		return adminBean;
-	}
 	
 	public String encryption(String pass)
 	{

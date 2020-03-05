@@ -101,7 +101,7 @@ public class MainController {
 			Model model) {
 
 		String role = (String) session.getAttribute("role");
-		String page = "adminHome";
+		String page = "admin";
 
 		if (br.hasErrors()) {
 			model.addAttribute("err", 0);

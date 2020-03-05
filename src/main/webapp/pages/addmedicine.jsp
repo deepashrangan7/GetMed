@@ -56,31 +56,32 @@ $btn.addEventListener("click", signIn);
             <span class="label">Medicine Name</span>
             <div class="underline"></div>
           </label>
-          
+          <p style="color:red;"><f:errors path="name"></f:errors></p>
           <label class="form-input">
             <i class="material-icons">person</i>
             <f:input path="brand" type="text" name="brand" required="true" />
             <span class="label">Brand Name</span>
             <div class="underline"></div>
           </label>
-          
-          
+          <p style="color:red;"><f:errors path="brand"></f:errors>
+          </p>
           <label class="form-input">
             <i class="material-icons">person</i>
             <f:input path="price" type="number" name="price" step="0.1" required="true" />
             <span class="label">Price</span>
             <div class="underline"></div>
           </label>
-
-
+<p style="color:red;">
+<f:errors path="price"></f:errors>
+</p>
           <label class="form-input">
             <i class="material-icons">person</i>
             <f:input type="number" path="stock" name="stock" required="true" />
             <span class="label">Stock</span>
             <div class="underline"></div>
           </label>
-
-
+<p style="color:red;">
+<f:errors path="name"></f:errors></p>
           <label class="form-input">
             <i class="material-icons">person</i>
             <f:input type="text" name="disease" path="disease" required="true" />
@@ -88,6 +89,8 @@ $btn.addEventListener("click", signIn);
             <div class="underline"></div>
           </label>
 
+<p style="color:red;">
+<f:errors path="disease"></f:errors></p>
           
 
           <label class="form-input">
@@ -96,6 +99,8 @@ $btn.addEventListener("click", signIn);
             <span class="label">City</span>
             <div class="underline"></div>
           </label>
+<p style="color:red;">
+<f:errors path="city"></f:errors></p>
 
 
           <label class="form-input">
@@ -104,6 +109,9 @@ $btn.addEventListener("click", signIn);
             <span class="label"></span>
             <div class="underline"></div>
           </label>
+     <p style="color:red;">
+<f:errors path="expiryDate"></f:errors></p>
+     
           <div class="submit-container clearfix" style="margin-top: 2rem;">          
             
             <button id="submit"  role="button" type="submit"  class="btn btn-irenic float-left btn-lg" tabindex="0">

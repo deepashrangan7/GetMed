@@ -28,7 +28,7 @@ public class AdminController {
 		AdminBean ab = (AdminBean) session.getAttribute("id");
 
 		List<MedicineBean> md=medicineDao.findByAdminId(ab.getEmailId().trim());
-		
+		System.out.println(md);
 		model.addAttribute("medicines", md);
 		return "adminHome";
 	}
@@ -40,24 +40,26 @@ public class AdminController {
 
 	@RequestMapping("/addmedicine")
 	public String addMedicine(@Valid @ModelAttribute("addmed") MedicineBean medicineBean, BindingResult br,
-			HttpSession session) {
+			HttpSession session,Model model) {
 		String page = "adminHome";
-		if (br.hasErrors())
+		if (br.hasErrors()) {
+		System.out.println("error in med");
 			return "addmedicine";
-
+		}
 		String role = (String) session.getAttribute("role");
 		System.out.println(role+" in admin");
 		if (role.equals("ad")) {
 			AdminBean ab = (AdminBean) session.getAttribute("id");
 //			System.out.println(ab);
-			//medicineBean.setAdminId(ab.getEmailId());
+			medicineBean.setAdminId(ab.getEmailId());
 		
 		} else {
 			UserBean ub = (UserBean) session.getAttribute("id");
-			//medicineBean.setAdminId(ub.getEmailId());
+			medicineBean.setAdminId(ub.getEmailId());
 
 		}
 		medicineDao.save(medicineBean);
-		return page;
+
+		return "admin";
 	}
 }

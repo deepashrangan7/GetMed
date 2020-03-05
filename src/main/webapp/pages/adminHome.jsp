@@ -4,6 +4,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,6 +47,8 @@
 <br/><br/>
 
 <table class="table table-hover" style="padding-top:5em;">
+  <caption><a href="/addm" style="text-align: center;" class="btn btn-outline-dark btn-lg">Add Medicine</a>
+  </caption>
   <thead>
     <tr>
       <th scope="col">Medicine Name</th>
@@ -64,13 +68,18 @@
     <tr>
     
       <th ><c:out value="${med.name}"/></th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td><c:out value="${med.brand}"/></td>
+      <td><c:out value="${med.price}"/></td>
+      <td><c:out value="${med.stock}"/></td>
+      <td><c:out value="${med.disease}"/></td>
+      <td><c:out value="${med.city}"/></td>
+      <td><fmt:formatDate value="${med.expiryDate}" pattern="dd-MM-yyyy"/>
+  </td>
+      <td><a href="#" class="btn btn-outline-secondary btn-sm">Edit</a></td>
+   	<td><a href="#" class="btn btn-outline-secondary btn-sm">Update</a></td>
     </tr>
   </c:forEach>
      </tbody>
 </table>
-<a href="/addm">Add Medicine</a>
 </body>
 </html>

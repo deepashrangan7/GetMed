@@ -29,7 +29,6 @@ public class AdminFunction {
 	{
 		 Base64.Encoder encoder = Base64.getEncoder(); 
 		pass = encoder.encodeToString(pass.getBytes());  
-//        System.out.println("Encoded string: "+password);  
        return pass;
 	}
 	
@@ -37,7 +36,6 @@ public class AdminFunction {
 	{ 
         Base64.Decoder decoder = Base64.getDecoder();
         password = new String(decoder.decode(password.getBytes()));
-//        System.out.println("DECODED STRING:"+passwo);
         return password;
 	}
 	

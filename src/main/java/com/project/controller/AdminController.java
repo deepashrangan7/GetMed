@@ -50,11 +50,11 @@ public class AdminController {
 		if (role.equals("ad")) {
 			AdminBean ab = (AdminBean) session.getAttribute("id");
 //			System.out.println(ab);
-			medicineBean.setAdminId(ab.getEmailId());
+			//medicineBean.setAdminId(ab.getEmailId());
 		
 		} else {
 			UserBean ub = (UserBean) session.getAttribute("id");
-			medicineBean.setAdminId(ub.getEmailId());
+			//medicineBean.setAdminId(ub.getEmailId());
 
 		}
 		medicineDao.save(medicineBean);

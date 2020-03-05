@@ -25,7 +25,6 @@ public class RecoveryBean {
 	private String q3="Who is your Favourite Hero?";
 	
 	@NotBlank(message="Enter Proper Answer")
-	@NotEmpty(message = "empty")
 	private String a1;
 	@NotBlank(message="Enter Proper Answer")
 	private String a2;

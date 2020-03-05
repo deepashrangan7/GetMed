@@ -67,7 +67,7 @@ $btn.addEventListener("click", signIn);
           
           <label class="form-input">
             <i class="material-icons">person</i>
-            <f:input path="brand" type="number" name="brand" step="0.1" required="true" />
+            <f:input path="price" type="number" name="price" step="0.1" required="true" />
             <span class="label">Price</span>
             <div class="underline"></div>
           </label>

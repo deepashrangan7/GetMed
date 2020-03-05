@@ -11,4 +11,8 @@ public interface AdminDao extends JpaRepository<AdminBean, String>{
 	
 	@Query("select s from AdminBean s where s.emailId=:email AND s.password=:password")
 	public AdminBean validateAdmin(String email,String password);
+
+	@Query("select s from AdminBean s where s.emailId=:email")
+	public AdminBean findAdmin(String email);
+
 }

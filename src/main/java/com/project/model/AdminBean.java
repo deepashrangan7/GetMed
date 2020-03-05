@@ -19,6 +19,7 @@ public class AdminBean {
 	@Id
 	@Column(name = "adminId")
 	@Pattern(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$", message = "Type Valid emailId")
+	@NotBlank(message="email cant be empty")
 	private String emailId;
 
 	@NotBlank(message = "FirstName should not be empty")

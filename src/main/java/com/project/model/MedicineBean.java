@@ -48,10 +48,11 @@ private String city;
 
 private Integer sales;
 
+private String adminId;
+
 @DateTimeFormat(pattern = "yyyy-MM-dd")
 private Date expiryDate;
 
-private String adminId;
 
 public String getAdminId() {
 	return adminId;
@@ -127,17 +128,18 @@ public Date getExpiryDate() {
 return expiryDate;
 }
 
-public void setExpiryDate(String expiryDate) { 
-SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd");
-try {
-this.expiryDate = sdf.parse(expiryDate);
-} catch (ParseException e) {
-// TODO Auto-generated catch block
-e.printStackTrace();
-}
-System.out.println(expiryDate);
-} 
+public void setExpiryDate(Date expiryDate) { 
 
+this.expiryDate=expiryDate;
+}
+
+public Integer getSales() {
+	return sales;
+}
+
+public void setSales(Integer sales) {
+	this.sales = sales;
+}
 
 
 

@@ -65,55 +65,60 @@ public class AdminController {
 	}
 
 	@RequestMapping("/editMedicine")
-	public String editPage(Integer mid,@ModelAttribute("editmed")MedicineBean mb,Model model) {
+	public String editPage(Integer mid, @ModelAttribute("editmed") MedicineBean mb, Model model,HttpSession session) {
 		String page = "editMedicine";
-	Optional<MedicineBean> mbean=	medicineDao.findById(mid);
-	MedicineBean medicineBean;
-	if(mbean.isPresent())
-	{
-		medicineBean=mbean.get();
-		model.addAttribute("editmed", medicineBean);
-		model.addAttribute("mid", mid);
-	}
-	return page;
+		Optional<MedicineBean> mbean = medicineDao.findById(mid);
+		MedicineBean medicineBean;
+		if (mbean.isPresent()) {
+			medicineBean = mbean.get();
+			model.addAttribute("editmed", medicineBean);
+			session.setAttribute("mid", mid);
+		}
+		return page;
 
 	}
 
 	@RequestMapping("/save")
-	public String edited(@ModelAttribute("editmed")MedicineBean mb,BindingResult br,Model model)
-	{
-		System.out.println("from map "+mb);
-		String page="admin";
-		if(br.hasErrors())
-		{
+	public String edited(@ModelAttribute("editmed") MedicineBean mb, BindingResult br,HttpSession session) {
+		String page = "admin";
+		if (br.hasErrors()) {
 			return "editMedicine";
 		}
-		Integer mid=((Integer)model.getAttribute("mid"));
-		if(mid!=null)
-		{Optional<MedicineBean> mbean=	medicineDao.findById(mid);
-		MedicineBean medicineBean=null;
-		if(mbean.isPresent())
-		{	medicineBean=mbean.get();
-//			medicineBean.setAdminId(mb.getAdminId());
-			medicineBean.setBrand(mb.getBrand());
-			medicineBean.setCity(mb.getCity());
-			medicineBean.setDisease(mb.getDisease());
-			medicineBean.setName(mb.getName());
-			medicineBean.setType(mb.getType());
-			medicineBean.setExpiryDate(mb.getExpiryDate());
-//			medicineBean.setMid(mb.getMid());
-			medicineBean.setPrice(mb.getPrice());
-			medicineBean.setSales(mb.getSales());
-			medicineBean.setStock(mb.getStock());
-			
-			System.out.println(medicineBean);
-			
-			//			model.addAttribute("editmed", medicineBean);
-//			model.addAttribute("mid", mid);
-			medicineDao.save(medicineBean);
-		}}
+		Integer mid = ((Integer) session.getAttribute("mid"));
+			if (mid != null) {
+			Optional<MedicineBean> mbean = medicineDao.findById(mid);
+			MedicineBean medicineBean = null;
+			if (mbean.isPresent()) {
+				medicineBean = mbean.get();
+
+				mb.setAdminId(medicineBean.getAdminId());
+				mb.setMid(medicineBean.getMid());
+				
+				medicineDao.save(mb);
+			}
+		}
 		return page;
-		
+
+	}
+	
+	@RequestMapping("/updateMedicine")
+	public String upadate(Integer mid,@ModelAttribute("update")MedicineBean medicineBean,HttpSession session)
+	{
+		session.setAttribute("mid", mid);
+		return "updateMedicine";
+	}
+	@RequestMapping("/update")
+	public String updated(@ModelAttribute("update")MedicineBean medicineBean,BindingResult br,HttpSession session)
+	{
+		String page="admin";
+		Optional<MedicineBean> o=medicineDao.findById((Integer)session.getAttribute("mid"));
+		MedicineBean med=null;
+		if(o.isPresent())
+			med=o.get();
+		medicineBean.setDisease(med.getDisease());
+		medicineBean.setMid(med.getMid());
+		medicineDao.save(medicineBean);
+		return page;
 	}
 	
 }

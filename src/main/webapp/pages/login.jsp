@@ -66,7 +66,7 @@ if(add==1)
     <div class="tile">
      
       <div class="tile-header">
-       <h2 style="color:black; opacity: .75; font-size: 2rem; display: flex; justify-content: center; align-items: center; height: 100%;"><%=s%> LOG IN</h2>
+       <h2 style="color:black; opacity: .75; font-size: 2rem; display: flex; justify-content: center; align-items: center; height: 100%;text-align: center;"><%=s%> LOG IN</h2>
       </div>
       
       <div class="tile-body">

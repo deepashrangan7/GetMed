@@ -81,7 +81,7 @@ else
 Integer i=(Integer)session.getAttribute("addm");
 String msg="";
 if(i==1)
-	msg="Your Datails are submitted successfully";
+	msg="Your Details are Added successfully";
 else if(i==2)
 	msg="Medicine Details Editted Successfully";
 else if(i==3)

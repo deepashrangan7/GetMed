@@ -113,8 +113,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/adminhomepage")
-	public String adminhome ()
+	public String adminhome (HttpSession session)
 	{
+		session.setAttribute("addm",0);
+		
 		return "admin";
 	}
 	

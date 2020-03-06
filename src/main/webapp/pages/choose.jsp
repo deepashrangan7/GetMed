@@ -52,13 +52,13 @@ $btn.addEventListener("click", signIn);
      
         <div class="container" style="width:120%;">
          
-          <h2 style="color:black; opacity: .75; font-size: 2rem; display: flex; height: 100%; text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose Role</h2>
+          <h2 style="color:black; opacity: .75; font-size: 2rem; display: flex; height: 100%; text-align: center;">Choose Role</h2>
      
           <br /><br />
           
-          <a class="btn btn-outline-dark btn-lg" style="width: 80%;" href="/log?role=ad" role="button">Admin</a>
+          <a class="btn btn-dark btn-lg" style="width: 80%;" href="/log?role=ad" role="button">Admin</a>
           <br /><br /><br />
-          <a class="btn btn-outline-dark btn-lg" style="width: 80%;" href="/log?role=us" role="button">&nbsp;User&nbsp;</a>
+          <a class="btn btn-dark btn-lg" style="width: 80%;" href="/log?role=us" role="button">&nbsp;User&nbsp;</a>
           <br /><br />
       </div>
 

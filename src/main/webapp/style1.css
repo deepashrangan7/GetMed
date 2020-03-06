@@ -1,4 +1,4 @@
-        @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i|Monoton");
+  @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i|Monoton");
         @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
         * {
@@ -11,13 +11,16 @@
         }
 
         body {
-            background: linear-gradient(to bottom, #000000, #ffffff);
-            color: #454749;
+            /* background: linear-gradient(to bottom, #000000, #ffffff);
+            color: #454749; */
+            background-image:url(medical_app.gif);
+            background-position:right;
             display: flex;
-            align-items: center;
-            justify-content: center;
+           /*  align-items: center;
+            justify-content: center; */
             font-family: 'Source Sans Pro', sans-serif;
             min-height: 100vh;
+            min-width: 60%;
         }
 
         h1,
@@ -34,24 +37,26 @@
  * Tiles
  */
         .tile {
-            background-color: #ffffff;
-            border-radius: .1rem;
-            box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2), 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
-            position: relative;
-            width: 100%;
-            min-width: 320px;
+             background-color: #ffffff;
+            border-radius: .3rem; 
+            /* box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2), 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
+            position: relative; */
+            float:left;
+            width: 40%;
+            min-width: 40%;
             max-width: 29rem;
             overflow: hidden;
         }
 
         .tile .tile-header {
-            background-position: center;
-            background-size: cover;
+        /*  background-position: left;
+            background-size: cover; */
             height: 5rem;
+            float:left;
         }
 
         .tile .tile-body {
-            padding: 2rem;
+            padding-top: 8rem;
         }
 
         /**
@@ -397,4 +402,3 @@
             vertical-align: baseline;
             border-radius: .25em;
         }
-   

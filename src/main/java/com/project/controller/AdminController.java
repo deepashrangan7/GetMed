@@ -86,7 +86,7 @@ public class AdminController {
 	}
 
 	@RequestMapping("/save")
-	public String edited(@ModelAttribute("editmed") MedicineBean mb, BindingResult br,HttpSession session) {
+	public String edited(@Valid @ModelAttribute("editmed") MedicineBean mb, BindingResult br,HttpSession session) {
 		if(session.getAttribute("id")==null)
 			return "choose";
 		
@@ -140,7 +140,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/update")
-	public String updated(@ModelAttribute("update")MedicineBean medicineBean,BindingResult br,HttpSession session,Model model)
+	public String updated(@Valid @ModelAttribute("update")MedicineBean medicineBean,BindingResult br,HttpSession session,Model model)
 	{
 		if(session.getAttribute("id")==null)
 			return "choose";

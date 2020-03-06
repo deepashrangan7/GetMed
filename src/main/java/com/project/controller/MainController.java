@@ -23,6 +23,7 @@ import com.project.service.AdminFunction;
 import com.project.service.RecoveryDao;
 import com.project.service.Validation;
 
+
 @Controller
 public class MainController {
 	@Autowired
@@ -170,9 +171,9 @@ public class MainController {
 		if (bindingResult.hasErrors()) {
 			return "recovery";
 		}
-		String role = (String) session.getAttribute("role");
+		AdminBean role = (AdminBean) session.getAttribute("sign");
 		adminDao.save((AdminBean) session.getAttribute("sign"));
-		recoveryBean.setDesgination(role);
+		recoveryBean.setDesgination(role.getEmailId());
 		recoveryDao.save(recoveryBean);
 		session.setAttribute("sign", null);
 		model.addAttribute("err", 0);

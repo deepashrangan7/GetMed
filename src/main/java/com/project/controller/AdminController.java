@@ -112,6 +112,12 @@ public class AdminController {
 
 	}
 	
+	@RequestMapping("/adminhomepage")
+	public String adminhome ()
+	{
+		return "admin";
+	}
+	
 	@RequestMapping("/updatemedicine")
 	public String upadate(Integer mid,HttpSession session,Model model)
 	{

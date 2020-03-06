@@ -127,9 +127,9 @@
 						class="btn btn-irenic float-left btn-lg" tabindex="0">
 						<span>Update</span>
 					</button>
-					<input value="clear" role="button" type="reset"
+					<a role="button" href="/viewupdate"
 						class="btn btn-irenic float-right btn-lg" tabindex="0">
-
+				Cancel	</a>
 
 					<div class="login-pending">
 						<div class=spinner>

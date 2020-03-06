@@ -145,9 +145,9 @@
 						class="btn btn-irenic float-left btn-lg" tabindex="0">
 						<span>Save</span>
 					</button>
-					<input value="clear" role="button" type="reset"
+					<a href="/adhome"  role="button" type="reset"
 						class="btn btn-irenic float-right btn-lg" tabindex="0">
-
+	Cancel	</a>
 
 					<div class="login-pending">
 						<div class=spinner>

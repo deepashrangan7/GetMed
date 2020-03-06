@@ -51,15 +51,14 @@
 			<span class="navbar-toggler-icon text-light">&#9776;</span>
 		</button>
 		<img src="logo2.png" alt="logo" style="height: 5%; width: 5%" /> <a
-			class="navbar-brand text-light" href="/adhome">GetMed</a>
+			class="navbar-brand text-light" href="/adminhomepage">GetMed</a>
 		<div class="collapse navbar-collapse" id="navigation-bar">
 			<ul class="navbar-nav ml-auto ">
-				<li class="nav-item "><a class="nav-link text-light"
-					href="/adhome">HOME</a></li>
+				
 				<li class="nav-item"><a class="nav-link text-light"
 					href="#work">CONTACT</a></li>
 				<li class="nav-item"><a class="nav-link text-light" href="#why">HELP</a></li>
-			<li class="nav-item"><a class="nav-link text-light" href="/logout">Logout</a></li>
+			<li class="nav-item"><a class="nav-link text-light" href="/logout">LOGOUT</a></li>
 			
 			</ul>
 		</div>
@@ -105,5 +104,12 @@ else
 	<p style="text-align: center;"><a href="/viewupdate" class="btn btn-outline-dark btn-lg">Update Stocks</a></p>
    
 
+<br/>
+	<p style="text-align: center;"><a href="#" class="btn btn-outline-dark btn-lg">New Orders</a></p>
+
+
+<br/>
+	<p style="text-align: center;"><a href="#" class="btn btn-outline-dark btn-lg">Your Orders</a></p>
+   
 </body>
 </html>

@@ -1,3 +1,4 @@
+<%@page import="com.project.model.MedicineBean"%>
 <%@page import="com.project.model.AdminBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -47,43 +48,62 @@
 <br/><br/><br/>
 <br/><br/><br/>
 
-<h3 style="text-align: center;">Medicine Information</h3>
+<h3 style="text-align: center;">Available Medicines</h3>
 <br/><br/>
 
 <table class="table table-hover" style="padding-top:5em;">
   
   <thead>
     <tr>
+    <th scope="col">Medicine Id</th>
       <th scope="col">Medicine Name</th>
       <th scope="col">Brand</th>
-      <th scope="col">Price</th>
+     <!--  <th scope="col">Price</th>
       <th scope="col">InStock</th>
      	<th scope="col">Disease</th>
      	<th scope="col">City</th>
     <th scope="col"> Expiry Date</th>
     <th scope="col">Edit</th>
-    
+    -->
     </tr>
   </thead>
   <tbody>
     <c:forEach items="${medicines}" var="med">
     <tr>
+    <th >
     
-      <th ><c:out value="${med.name}"/></th>
+    
+    
+<div class="container">
+  
+  <a type="button" href="/editedview?mid=${med.mid}"  class="btn btn-outline-dark btn-md">
+      <c:out value="${med.mid}"/>
+ </a>      
+  
+</div>
+  
+    </th>
+      <td ><c:out value="${med.name}"/></td>
       <td><c:out value="${med.brand}"/></td>
-      <td><c:out value="${med.price}"/></td>
+    
+    <!-- 
+    
+    <!-- Button trigger modal -->
+
+  <!-- Add class .modal-frame and then add class .modal-bottom (or other classes from list above) to set a position to the modal 
+    
+    
+     -->
+     <!-- <td><c:out value="${med.price}"/></td>
       <td><c:out value="${med.stock}"/></td>
       <td><c:out value="${med.disease}"/></td>
       <td><c:out value="${med.city}"/></td>
       <td><fmt:formatDate value="${med.expiryDate}" pattern="dd-MM-yyyy"/>
   </td>
       <td><a href="editMedicine?mid=${med.mid}" class="btn btn-outline-secondary btn-sm">Edit</a></td>
-    </tr>
+    </tr> 	--> 
   </c:forEach>
      </tbody>
 </table>
-
-<p style="text-align: center;"><a href="/addm" style="text-align: center;" class="btn btn-outline-dark btn-lg">Add Medicine</a>
-  </p>
 </body>
 </html>

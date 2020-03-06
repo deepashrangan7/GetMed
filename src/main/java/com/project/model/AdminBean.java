@@ -34,6 +34,7 @@ public class AdminBean {
 
 	@Min(value = 1, message = "Age Should Not Be 0 or Negative")
 	@Max(value = 150, message = "Age Cant be more than 150")
+	@NotNull(message = "Enter Age")
 	private Integer age;
 
 	@NotNull(message = "Choose Gender")

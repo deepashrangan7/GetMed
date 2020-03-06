@@ -143,7 +143,7 @@
 
 					<button id="submit" role="button" type="submit"
 						class="btn btn-irenic float-left btn-lg" tabindex="0">
-						<span>Add Medicine</span>
+						<span>Submit</span>
 					</button>
 					<input id="submit" value="clear" role="button" type="reset"
 						class="btn btn-irenic float-right btn-lg" tabindex="0">

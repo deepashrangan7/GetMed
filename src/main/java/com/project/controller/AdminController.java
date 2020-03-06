@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.model.AdminBean;
 import com.project.model.MedicineBean;
-
+import com.project.model.TypeBean;
 import com.project.service.MedicineDao;
 
 @Controller
@@ -23,6 +23,26 @@ public class AdminController {
 	@Autowired
 	private MedicineDao medicineDao;
 
+	
+	@RequestMapping("/viewstock")
+	public String viewstock(TypeBean type,Model model)
+	{
+		
+		List<MedicineBean> mb;
+		if(type.getType()==null||type.getType().equals("all"))
+		{	mb=medicineDao.findAll();
+		type.setType("all");
+		}
+		else
+			mb=medicineDao.findType(type.getType());
+		model.addAttribute("mediciness",mb);
+		model.addAttribute("ts",type);
+		return "viewstock";
+	}
+	
+	
+	
+	
 	@RequestMapping("/adhome")
 	public String adminMainPage(Model model, HttpSession session) {
 		if(session.getAttribute("id")==null)
@@ -30,12 +50,22 @@ public class AdminController {
 		
 		AdminBean ab = (AdminBean) session.getAttribute("id");
 
-		List<MedicineBean> md = medicineDao.findByAdminId(ab.getEmailId().trim());
-//		System.out.println(md);
+		List<MedicineBean> md = medicineDao.findAll();
+				//		System.out.println(md);
 		model.addAttribute("medicines", md);
 		return "adminHome";
 	}
 
+	@RequestMapping("/editedview")
+	public String editedview(Integer mid,Model model)
+	{
+		Optional<MedicineBean> o =medicineDao.findById(mid);
+		
+		if(o.isPresent())
+			model.addAttribute("meds",o.get());
+		return "editview";
+	}
+	
 	@RequestMapping("/addm")
 	public String adminMainPage(@ModelAttribute("addmed") MedicineBean medicineBean,HttpSession session) {
 		if(session.getAttribute("id")==null)
@@ -56,14 +86,7 @@ public class AdminController {
 			return "addmedicine";
 		}
 		String role = (String) session.getAttribute("role");
-		System.out.println(role + " in admin");
-		if (role.equals("ad")) {
-			AdminBean ab = (AdminBean) session.getAttribute("id");
-//			System.out.println(ab);
-			medicineBean.setAdminId(ab.getEmailId());
-
-		} 
-		medicineDao.save(medicineBean);
+				medicineDao.save(medicineBean);
 		session.setAttribute("addm", 1);
 		return "admin";
 	}
@@ -101,7 +124,6 @@ public class AdminController {
 			if (mbean.isPresent()) {
 				medicineBean = mbean.get();
 
-				mb.setAdminId(medicineBean.getAdminId());
 				mb.setMid(medicineBean.getMid());
 				
 				medicineDao.save(mb);
@@ -150,17 +172,12 @@ public class AdminController {
 		medicineBean.setType(med.getType());
 		medicineBean.setMid(med.getMid());
 	
-		medicineBean.setAdminId(med.getAdminId());
-	
+		
 		if(br.hasErrors())
 		{
 			model.addAttribute("update",medicineBean);
 			return "updateMedicine";
 		}
-		System.out.println("keela "+medicineBean);
-		
-		//medicineBean.setSales(med.getSales());
-		//medicineBean.setMid(med.get);
 		
 		medicineDao.save(medicineBean);
 		
@@ -173,9 +190,8 @@ public class AdminController {
 		if(session.getAttribute("id")==null)
 			return "choose";
 		
-		AdminBean ab=(AdminBean)session.getAttribute("id");
-	List<MedicineBean>	mb=medicineDao.findByAdminId(ab.getEmailId());
-		model.addAttribute("medicines",mb);
+			List<MedicineBean>	mb=medicineDao.findAll();
+			model.addAttribute("medicines",mb);
 	
 		return "viewupdate";
 	}

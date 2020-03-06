@@ -101,15 +101,19 @@ else
 	
 </p>
 <br/>
+<p style="text-align: center;"><a href="/addm" style="text-align: center;" class="btn btn-outline-dark btn-lg">Add Medicine</a>
+  </p>
+
+<br/>
+<p style="text-align: center;"><a href="/viewstock" style="text-align: center;" class="btn btn-outline-dark btn-lg">View Stock</a>
+  </p>
+
+<br/>
 	<p style="text-align: center;"><a href="/viewupdate" class="btn btn-outline-dark btn-lg">Update Stocks</a></p>
    
 
 <br/>
-	<p style="text-align: center;"><a href="#" class="btn btn-outline-dark btn-lg">New Orders</a></p>
+	<p style="text-align: center;"><a href="#" class="btn btn-outline-dark btn-lg">View Orders</a></p>
 
-
-<br/>
-	<p style="text-align: center;"><a href="#" class="btn btn-outline-dark btn-lg">Your Orders</a></p>
-   
 </body>
 </html>

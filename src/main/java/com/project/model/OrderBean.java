@@ -1,12 +1,16 @@
 package com.project.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,9 +19,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name="orders")
 public class OrderBean {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="oid")
 	private Integer orderId;
 	
 	@Column(name="aid")

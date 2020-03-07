@@ -40,7 +40,7 @@ public class MedicineBean {
 	}
 
 	@NotNull(message = "stock should not be empty")
-	@Min(value = 1, message = "please enter stock")
+	@Min(value = 0, message = "please enter stock ")
 	private Integer stock;
 
 	@NotBlank(message = "Please specify the disease")

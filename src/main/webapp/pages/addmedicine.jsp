@@ -83,7 +83,7 @@
 					<f:errors path="price"></f:errors>
 				</p>
 				<label class="form-input"> <i class="material-icons">person</i>
-					<f:input type="number" path="stock" name="stock" required="true" />
+					<f:input type="number" path="stock" name="stock" required="true" min="0" />
 					<span class="label">Stock</span>
 					<div class="underline"></div>
 				</label>

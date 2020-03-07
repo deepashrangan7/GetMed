@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.project.model.AdminBean;
 import com.project.model.LoginBean;
 import com.project.model.RecoveryBean;
-
+import com.project.model.SearchBean;
 import com.project.service.AdminDao;
 import com.project.service.AdminFunction;
 import com.project.service.RecoveryDao;
@@ -116,7 +116,7 @@ public class MainController {
 	}
 
 	@RequestMapping("/main")
-	public String mainPage(@Valid @ModelAttribute("login") LoginBean login, BindingResult br, HttpSession session,
+	public String mainPage(@ModelAttribute("sb") SearchBean sb ,@Valid @ModelAttribute("login") LoginBean login, BindingResult br, HttpSession session,
 			Model model) {
 
 		String role = (String) session.getAttribute("role");
@@ -160,6 +160,8 @@ public class MainController {
 
 		}
 		session.setAttribute("add", 0);
+		model.addAttribute("sb",new SearchBean());
+		
 		return page;
 
 	}// main

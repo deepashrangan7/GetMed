@@ -1,4 +1,7 @@
 
+<%@page import="java.util.Map"%>
+<%@page import="com.project.model.MedicineBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -100,35 +103,7 @@
 					</li>
 
 				</ul>
-				<f:form class="form-inline my-2 my-lg-0" action="viewmedicine"
-					method="post" modelAttribute="sb">
-
-					<input class="form-control mr-sm-2" type="search"
-						placeholder="Search " aria-label="Search" name="name">
-					<div class="col-auto my-1">
-
-						<select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
-							name="type">
-
-							<option value="name" selected>Name</option>
-							<option value="brand">Brand</option>
-						</select>
-					</div>
-					<!-- 
-					<div class="col-auto my-1">
-
-						<f:select class="custom-select mr-sm-2"
-							id="inlineFormCustomSelect" path="city" name="city">
-
-							<f:option value="all" selected="true">All</f:option>
-							<f:options items="${cities}" />
-						</f:select>
-					</div>
- -->
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search
-						medicine</button>
-				</f:form>
-			</div>
+							</div>
 		</nav>
 	</div>
 	<br />
@@ -137,22 +112,19 @@
 	<c:choose>
 		<c:when test="${fn:length(cart) eq 0}">
 			<h2 style="text-align: center">No Medicines In cart</h2>
-			<h2 style="text-align: center"><a href="#" class="btn btn-outline-secondary btn-lg">Click Here to Buy Medicine</a></h2>
+			<h2 style="text-align: center"><a href="/allmed" class="btn btn-outline-secondary btn-lg">Click Here to Buy Medicine</a></h2>
 			
 		</c:when>
 		<c:otherwise>
-
-
-			<form action="sort" method="post" >
-
-<p style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-<input type="submit" name="submit" value="sort" style="float:right;" class="btn btn-outline-secondary btn-md">
-
-
-<div class="col-auto my-1" style="float: right;">
-
+<%int x=0; %>
 
 			<br />
+
+<c:if test="${nostock==1}">
+<h3 style="color: red; text-align: center">Sorry No Enough Stock In This Item</h3>
+<h3 style="color: red; text-align: center">Try With Less Quantity</h3>
+
+</c:if>
 			<br />
 			<table class="table table-hover" style="padding-top: 5em;">
 
@@ -165,11 +137,19 @@
 						<th scope="col">Price per unit</th>
 						
 						<th scope="col">Quantity</th>
+						<th scope="col">Remove</th>
 
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${listofmedicine}" var="med">
+						<%
+					Map<Integer,Integer> o=(Map<Integer,Integer>)session.getAttribute("cart");
+					List<MedicineBean> mb=(List<MedicineBean>)session.getAttribute("listofmedicine");		
+	Integer key=mb.get(x).getMid();						
+						
+					Integer i=	o.get(key);
+						%>
 						<tr>
 
 							<th><c:out value="${med.name}" /></th>
@@ -178,15 +158,27 @@
 							<td><c:out value="${med.price}" /></td>
 						
 							<td>
-							<a href="#"><img src="minus.png" alt="minus" width="2px" height="2px"></a>
-								
+							
+					<f:form action="/addquantity?mid=${med.mid}" >
+<input type="number" name="quantity"  min="1"  value=<%=i %> required="true" >					
+					<input type="submit" value="add"/>
+					</f:form>				
+									</td>
 									
+									<td>
+									<a class="btn btn-danger btn-md" href="/removefromcart2?mid=${med.mid}">Remove from cart</a>
 									</td>
 						</tr>
-					</c:forEach>
+		<%x+=1; %>
+											</c:forEach>
 				</tbody>
 			</table>
-
+			<p style="text-align: right;font-size: 22px">Total Amount : ${total}Rs/-</p>
+		<br/><br/>
+		<p style="text-align: center;font-size: 22px"><a href="/pay" class="btn btn-outline-success btn-md">Proceed To Pay</a></p>
+		<br/><br/>
+		<p style="text-align: center;font-size: 22px"><a href="/viewmedicine" class="btn btn-outline-success btn-md">Continue Shopping</a></p>
+		
 		</c:otherwise>
 	</c:choose>
 

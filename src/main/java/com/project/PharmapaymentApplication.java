@@ -20,9 +20,9 @@ public class PharmapaymentApplication {
 
 	}
 	@Bean
-	public HashMap<Integer,Double> map()
+	public HashMap<Integer,Integer> map()
 	{
-		return new HashMap<Integer,Double>();
+		return new HashMap<Integer,Integer>();
 	}
 	
 	@Bean

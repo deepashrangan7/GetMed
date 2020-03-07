@@ -130,7 +130,7 @@
 						medicine</button>
 					<c:if test="${fn:length(cart)>0}">
 						<div class="col-auto my-1">
-						<a class="btn btn-success btn-med" href="#">View Cart</a>
+						<a class="btn btn-success btn-med" href="/viewcart">View Cart</a>
 						
 						</div>
 					</c:if>

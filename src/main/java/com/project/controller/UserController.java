@@ -29,7 +29,7 @@ public class UserController {
 		m.addAttribute("sb", new SearchBean());
 		m.addAttribute("err",0);
 		
-		return "userhome";
+		return "userHome";
 	}
 
 
@@ -43,10 +43,17 @@ public class UserController {
 		List<MedicineBean> mb;
 		if (sb.getType().equals("name")) {
 			mb = md.findName(sb.getName().trim());
+			int x=0;
+			for (MedicineBean mm:mb)
+			{
+				if(mm.getStock()<=0)
+					mb.remove(x);
+		x+=1;
+			}
 			if (mb.size() == 0) {
 				List<MedicineBean> dummymb = md.findAll();
 				for (MedicineBean m1 : dummymb) {
-					if (m1.getName().contains(sb.getName())) {
+					if (m1.getName().contains(sb.getName()) && m1.getStock()>0) {
 						mb.add(m1);
 					}
 				}
@@ -55,11 +62,17 @@ public class UserController {
 		} else {
 
 			mb = md.findBrand(sb.getName().trim());
-
+			int x=0;
+			for (MedicineBean mm:mb)
+			{
+				if(mm.getStock()<=0)
+					mb.remove(x);
+		x+=1;
+			}
 			if (mb.size() == 0) {
 				List<MedicineBean> dummymb = md.findAll();
 				for (MedicineBean m1 : dummymb) {
-					if (m1.getBrand().contains(sb.getName())) {
+					if (m1.getBrand().contains(sb.getName())&& m1.getStock()>0) {
 						mb.add(m1);
 					}
 				}

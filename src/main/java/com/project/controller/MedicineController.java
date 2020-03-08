@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project.model.AdminBean;
 import com.project.model.MedicineBean;
 import com.project.model.SearchBean;
 import com.project.service.MedicineDao;
@@ -27,11 +28,88 @@ public class MedicineController {
 	@Autowired
 	private Map<Integer, Integer> cart;
 
-	@RequestMapping("/pay")
-	public String payment()
-	{
-		return "payment";
+	
+	
+	
+	@RequestMapping("/orderdone")
+	public String ordermedicine(HttpSession session) {
+
+		String page = "viewcart";
+		
+		String stk="some stocks sold out";
+		int i=0;
+		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
+			Integer mid1 = entry.getKey();
+			if(! (of.stockAvailable(mid1, cart.get(mid1))))
+			{
+//				System.out.println(mid1+" srock no");
+				i+=1;
+
+				Optional<MedicineBean> o = md.findById(mid1);
+				if (o.isPresent()) {
+				MedicineBean mbb=o.get();
+				
+				stk+="\n only "+mbb.getStock()+" left in"+mbb.getName()+" ";
+				
+				
+				}//o.present
+			}//!
+			
+		}//for		
+//		System.out.println(stk);
+		if(i!=0) {
+			session.setAttribute("nostock", stk);
+			return "viewcart";
+		}else {
+			
+//			System.out.println("success");
+			Double total=(Double)session.getAttribute("total");
+			AdminBean ab=(AdminBean)session.getAttribute("id");
+			String uid=ab.getEmailId();
+			of.placeorder(cart, total, uid);
+		System.out.println("order placed "+ uid+" "+total);
+			session.setAttribute("nostock", "");
+			cart.clear();
+			session.setAttribute("cart", null);
+			////write
+		}
+
+		
+		
+		return page;
 	}
+
+	
+	@RequestMapping("/pay")
+	public String payment(HttpSession session)
+	{
+		String stk="some stocks sold out";
+		int i=0;
+		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
+			Integer mid1 = entry.getKey();
+			if(! (of.stockAvailable(mid1, cart.get(mid1))))
+			{ System.out.println(mid1+" srock no");
+				i+=1;
+
+				Optional<MedicineBean> o = md.findById(mid1);
+				if (o.isPresent()) {
+				MedicineBean mbb=o.get();
+				
+				stk+="\n only "+mbb.getStock()+" left in"+mbb.getName()+" ";
+				
+				
+				}//o.present
+			}//!
+			
+		}//for		
+		System.out.println(stk);
+		if(i!=0) {
+			session.setAttribute("nostock", stk);
+			return "viewcart";
+		}
+		
+		return "payment";
+	}//method
 	
 	
 	@RequestMapping("/addtocart")
@@ -102,7 +180,7 @@ public class MedicineController {
 		
 				session.setAttribute("listofmedicine", mb);
 				session.setAttribute("total", prices);
-				
+				session.setAttribute("nostock", null);
 				return "viewcart";
 	}
 
@@ -126,19 +204,26 @@ public class MedicineController {
 				mb.add(o.get());
 
 		}
-
 		Double prices=0.0;
 		for(MedicineBean mm:mb) {
 			
 			prices+=mm.getPrice()*cart.get(mm.getMid());
 			
 		}
-		session.setAttribute("nostock", 0);
+		session.setAttribute("nostock", null);
 		session.setAttribute("total", prices);
 		}else {
 			//System.out.println("no stock");
-		session.setAttribute("nostock", 1);
+			String stk="";
+			Optional<MedicineBean> o = md.findById(mid);
+			MedicineBean mbb=null;
+			if (o.isPresent())
+				mbb=o.get();
+			
+			stk+=("Only "+mbb.getStock()+" left in "+mbb.getName()+" .");
+			session.setAttribute("nostock", stk);
 		}
+		
 		session.setAttribute("cart", cart);
 		
 		

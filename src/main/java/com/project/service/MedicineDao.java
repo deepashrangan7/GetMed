@@ -11,6 +11,9 @@ import com.project.model.MedicineBean;
 @Repository
 public interface MedicineDao extends JpaRepository<MedicineBean, Integer>{
 
+	@Query("select s from MedicineBean s where s.type=:type And s.name=:name And s.brand=:brand")
+	public MedicineBean weatherAny(String name,String brand,String type);
+	
 	@Query("select s from MedicineBean s where s.type=:type")
 	public List<MedicineBean> findType(String type);
 

@@ -87,7 +87,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/uhome" style="color: white;">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/uhome" style="color: white;"><span class="sr-only">(current)</span></a>
         </li>
         
       </ul>
@@ -114,11 +114,25 @@
 -->
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search medicine</button>
       </f:form>
+   <a href="#" class="btn btn-outline-danger btn-md">Log Out</a>
+  
     </div>
-  </nav>
+   </nav>
+
+
+  
+ <br/><br/>
+ <div class="container" style="text-align: center">
+ 
+ <a href="/allmed" class="btn btn-outline-info btn-lg">view all medicine</a>
+&nbsp;
+ <a href="#" class="btn btn-outline-info btn-lg">Order History</a>
+ 
+</div>
+
 
   <div style="padding-top: 2em; padding-bottom: 2em;" class=" d-flex flex-row align-items-start">
-
+<!-- 
 
     <div class="flip-card">
       <div class="flip-card-inner">
@@ -138,7 +152,7 @@
         </div>
       </div>
     </div>
-
+ -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"
       style="padding-top: 0em;width: 60%;height: 60%;">
 
@@ -175,7 +189,7 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-    <div class="flip-card">
+    <!--     <div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front">
           <img src="med2.jfif" alt="Avatar" style="width:300px;height:300px;">
@@ -188,10 +202,11 @@
       </div>
     </div>
 
-
+ -->
+About Us
   </div>
- <br/><br/>
- <a href="/allmed">view all medicine</a>
+
+ 
 </body>
 
 </html>

@@ -98,7 +98,7 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="/uhome"
+					<li class="nav-item active"><a class="nav-link" href="/gohome"
 						style="color: white;">Home <span class="sr-only">(current)</span></a>
 					</li>
 
@@ -120,10 +120,8 @@
 
 			<br />
 
-<c:if test="${nostock==1}">
-<h3 style="color: red; text-align: center">Sorry No Enough Stock In This Item</h3>
-<h3 style="color: red; text-align: center">Try With Less Quantity</h3>
-
+<c:if test="${nostock!=null}">
+<h5 style="color: red; text-align: center">${nostock}</h5>
 </c:if>
 			<br />
 			<table class="table table-hover" style="padding-top: 5em;">

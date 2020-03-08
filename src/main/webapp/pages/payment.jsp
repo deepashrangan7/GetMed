@@ -138,7 +138,7 @@
                             <h3 class="text-center"> Card Payment</h3>
                             <hr>
                           
-                            <form class="form" role="form" autocomplete="off" action="/allmed">
+                            <form class="form" role="form" autocomplete="off" action="/orderdone">
                                 <div class="form-group">
                                     <label for="cc_name">Card Holder's Name</label>
                                     <input type="text" class="form-control" id="cc_name" pattern="\w+ \w+.*" title="First and last name" required="required">
@@ -235,7 +235,7 @@
       </div>
       <div class="modal-footer">
         
-        <a type="button" class="btn btn-primary btn-lg" href="/allmed">Confirm</a>
+        <a type="button" class="btn btn-primary btn-lg" href="/orderdone">Confirm</a>
       </div>
     </div>
   </div>

@@ -22,20 +22,25 @@ public class OrderBean {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="oid")
+	@Column(name="orderid")
 	private Integer orderId;
 	
-	@Column(name="aid")
-	private String adminId;
 	@Column(name="uid")
 	private String userId;
 	
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
 	private Double amount;
 	
 	private String status;
 	
 	@CreationTimestamp
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date orderDate;
 	
 	public Integer getOrderId() {
@@ -46,14 +51,7 @@ public class OrderBean {
 		this.orderId = orderId;
 	}
 
-	public String getAdminId() {
-		return adminId;
-	}
-
-	public void setAdminId(String adminId) {
-		this.adminId = adminId;
-	}
-
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -80,7 +78,7 @@ public class OrderBean {
 
 	@Override
 	public String toString() {
-		return "OrderBean [orderId=" + orderId + ", adminId=" + adminId + ", userId=" + userId + ", amount=" + amount
+		return "OrderBean [orderId=" + "orderId" +  "userId=" + userId + ", amount=" + amount
 				+ ", status=" + status + "]";
 	}
 	

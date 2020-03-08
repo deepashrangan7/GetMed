@@ -29,7 +29,7 @@ public class MedicineController {
 	private Map<Integer, Integer> cart;
 
 	@RequestMapping("/orderdone")
-	public String ordermedicine(HttpSession session) {
+	public synchronized String ordermedicine(HttpSession session) {
 
 		String page = "viewcart";
 
@@ -45,7 +45,7 @@ public class MedicineController {
 				if (o.isPresent()) {
 					MedicineBean mbb = o.get();
 
-					stk += "\n only " + mbb.getStock() + " left in" + mbb.getName() + " ";
+					stk += "\n only " + mbb.getStock() + " left in " + mbb.getName() + " ";
 
 				} // o.present
 			} // !
@@ -73,9 +73,12 @@ public class MedicineController {
 	}
 
 	@RequestMapping("/pay")
-	public String payment(HttpSession session) {
+	public synchronized String payment(HttpSession session) {
 		String stk = "some stocks sold out";
 		int i = 0;
+		try {Thread.sleep(2000);}catch (Exception e) {
+			// TODO: handle exception
+		}
 		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
 			Integer mid1 = entry.getKey();
 			if (!(of.stockAvailable(mid1, cart.get(mid1)))) {
@@ -92,7 +95,7 @@ public class MedicineController {
 			} // !
 
 		} // for
-		System.out.println(stk);
+//		System.out.println(stk);
 		if (i != 0) {
 			session.setAttribute("nostock", stk);
 			return "viewcart";

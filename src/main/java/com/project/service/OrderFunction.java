@@ -50,15 +50,13 @@ public class OrderFunction {
 		boolean flag = false;
 
 		try {
+
+			List<OrderBean> ob1 = od.findOid();
+			Integer oid = ob1.get(0).getOrderId()+1;
 			List<MedicineOrdered> morder = new ArrayList<>();
 			MedicineBean mbb = null;
-			OrderBean ob = new OrderBean();
-			ob.setAmount(total);
-			ob.setStatus("inprogress");
-			ob.setUserId(uid);
-			od.save(ob);
-			List<OrderBean> ob1 = od.findOid();
-			Integer oid = ob1.get(0).getOrderId();
+			
+			
 			for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
 				Integer mid1 = entry.getKey();
 				morder.add(new MedicineOrdered());
@@ -76,6 +74,18 @@ public class OrderFunction {
 				}
 			} // for
 
+			
+			
+			
+			Thread.sleep(900);
+			OrderBean ob = new OrderBean();
+			ob.setAmount(total);
+			ob.setStatus("inprogress");
+			ob.setUserId(uid);
+			od.save(ob);
+			Thread.sleep(2000);
+			
+			
 		} catch (Exception e) {
 //			System.out.println(e.getMessage());
 			System.out.println("error in ordering");

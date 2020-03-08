@@ -223,11 +223,11 @@
 							<td><c:out value="${med.disease}" /></td>
 							<td><c:out value="${med.city}" /></td>
 							<td><c:if test="${!cart.containsKey(med.mid)}">
-									<a href="/addtocart?mid=${med.mid}"
+									<a href="/addtocart?mid=${med.mid}&opt=0"
 										class="btn btn-outline-secondary btn-md ">&nbsp;Add
 										&nbsp;</a>
 								</c:if> <c:if test="${cart.containsKey(med.mid)}">
-									<a href="/removefromcart?mid=${med.mid}"
+									<a href="/removefromcart?mid=${med.mid}&opt=0"
 										class="btn btn-outline-secondary btn-md ">Remove</a>
 								</c:if></td>
 						</tr>

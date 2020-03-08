@@ -55,7 +55,8 @@
         <li class="nav-item active">
           <a class="nav-link" href="/adminhomepage" style="color: white;">Home<span class="sr-only">(current)</span></a>
         </li>
-       
+      <li class="nav-item"><a class="nav-link text-light" href="/logout">Logout</a></li>
+			 
       </ul>
       <f:form  modelAttribute="ts" action="viewstock" method="post" class="form-inline my-2 my-lg-0" >
 <div class="col-auto my-1">

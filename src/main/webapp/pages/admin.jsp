@@ -106,14 +106,14 @@ else
 
 <br/>
 <p style="text-align: center;"><a href="/viewstock" style="text-align: center;" class="btn btn-outline-dark btn-lg">View Stock</a>
-  </p>
+ </p>
 
 <br/>
 	<p style="text-align: center;"><a href="/viewupdate" class="btn btn-outline-dark btn-lg">Update Stocks</a></p>
    
 
 <br/>
-	<p style="text-align: center;"><a href="#" class="btn btn-outline-dark btn-lg">View Orders</a></p>
+	<p style="text-align: center;"><a href="/viewordersadmin" class="btn btn-outline-dark btn-lg">View Orders</a></p>
 
 </body>
 </html>

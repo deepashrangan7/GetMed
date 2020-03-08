@@ -13,7 +13,28 @@
 <html>
 
 <head>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $(".dropdown-menu li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 <title>GetMed</title>
+  <style>
+  
+  #myInput {
+    padding: 20px;
+    margin-top: -6px;
+    border: 0;
+    border-radius: 0;
+    background: #f1f1f1;
+  }
+  </style>
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -96,90 +117,52 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><a class="nav-link" href="/uhome"
-						style="color: white;">Home <span class="sr-only">(current)</span></a>
+						style="color: white;">Home <span class="sr-only"></span></a>
 					</li>
-
+<li class="nav-item"><a class="nav-link text-light" href="/logout">Logout</a></li>
+			
 				</ul>
-				<f:form class="form-inline my-2 my-lg-0" action="viewmedicine"
-					method="post" modelAttribute="sb">
-
-					<input class="form-control mr-sm-2" type="search"
-						placeholder="Search " aria-label="Search" name="name">
-					<div class="col-auto my-1">
-
-						<select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
-							name="type">
-
-							<option value="name" selected>Name</option>
-							<option value="brand">Brand</option>
-						</select>
-					</div>
-
-
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search
-						medicine</button>
-						
-						<c:if test="${fn:length(cart)>0}">
-						<div class="col-auto my-1">
-						<a class="btn btn-success btn-med" href="/viewcart">View Cart</a>
-						
-						</div>
-					</c:if>
-				
-				
-				</f:form>
-			</div>
+							</div>
 		</nav>
 	</div>
-	<br />
 	<br />
 	<p style="text-align: center;">
 		<f:errors path="name"></f:errors>
 	</p>
 
 	<c:choose>
-		<c:when test="${fn:length(medici) eq 0}">
-			<h2 style="text-align: center">No Medicine found</h2>
+		<c:when test="${fn:length(allorders) eq 0}">
+			<h2 style="text-align: center"> No Orders Received </h2>
 		</c:when>
 		<c:otherwise>
+			<p style="text-align: center; color: green; font-size: 30px; font-weight: bolder;">ORDERS
+				</p>
+			<br />
+			<f:form action="viewordersadmin" method="post" modelAttribute="filter">
+
+				<input type="submit" name="submit" value="sort"
+					style="float: right;" class="btn btn-outline-secondary btn-md">
 
 
-			<form action="sort" method="post" >
+<div class="col-auto my-1" style="float:right;">
 
-<p style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-<input type="submit" name="submit" value="sort" style="float:right;" class="btn btn-outline-secondary btn-md">
+          <f:select path="filter" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="filter">
 
-
-<div class="col-auto my-1" style="float: right;">
-
-
-
-					<select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
-						name="type">
-
-						<option value="name" selected>Name</option>
-						<option value="brand">Brand</option>
-						<option value="price">Price</option>
-						<option value="city">City</option>
-					</select>
-				</div>
-				
-			<div class="col-auto my-1" style="float:right;padding-right: 4px;">
-
-					<select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
-						name="order">
-
-						<option value="asc" selected>Ascending</option>
-						<option value="desc">Descending</option>
-					</select>
-				</div>
-
-<p style="float:right;font-size: 20px;font-weight: bold;">Sort By </p>
+            <f:option value="all" selected="true">All</f:option>
+            <f:option value="inprogress">In Progress</f:option>
+            <f:option value="shipped">Shipped</f:option>
+            <f:option value="delivered">Delivered</f:option>
+          </f:select>
+        </div>
 
 
-			</form>
+				<p style="float: right; font-size: 20px; font-weight: bold;">Filter
+					By</p>
 
-			</p>
+
+			</f:form>
+
+			
 			<br />
 			<br />
 			<table class="table table-hover" style="padding-top: 5em;">
@@ -187,34 +170,26 @@
 				<thead>
 					<tr>
 
-						<th scope="col">Medicine Name</th>
-						<th scope="col">Brand</th>
-						<th scope="col">Type</th>
-						<th scope="col">Price</th>
-						<th scope="col">Disease</th>
-						<th scope="col">City</th>
-						<th scope="col">Add to Cart</th>
+						<th scope="col">Order Id</th>
+						<th scope="col">Total Amount</th>
+						<th scope="col">Order Date & Time</th>
+						<th scope="col">Paid</th>
+						<th scope="col">Status</th>
+						<th scope="col">View Details</th>
+						
 
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${medici}" var="med">
+					<c:forEach items="${allorders}" var="ord">
 						<tr>
 
-							<th><c:out value="${med.name}" /></th>
-							<td><c:out value="${med.brand}" /></td>
-							<td><c:out value="${med.type}" /></td>
-							<td><c:out value="${med.price}" /></td>
-							<td><c:out value="${med.disease}" /></td>
-							<td><c:out value="${med.city}" /></td>
-							<td><c:if test="${!cart.containsKey(med.mid)}">
-									<a href="/addtocart?mid=${med.mid}&opt=1"
-										class="btn btn-outline-secondary btn-md ">&nbsp;Add
-										&nbsp;</a>
-								</c:if> <c:if test="${cart.containsKey(med.mid)}">
-									<a href="/removefromcart?mid=${med.mid}&opt=1"
-										class="btn btn-outline-secondary btn-md ">Remove</a>
-								</c:if></td>
+							<th><c:out value="${ord.orderId}" /></th>
+							<td><c:out value="${ord.amount}" /></td>
+							<td><c:out value="${ord.orderDate}" /></td>
+							<td>Yes</td>
+							<td><c:out value="${ord.status}" /></td>
+							<td><a href="/viewparticluardetail?oid=${ord.orderId}">View</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

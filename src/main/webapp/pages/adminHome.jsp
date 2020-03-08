@@ -86,22 +86,6 @@
       <td ><c:out value="${med.name}"/></td>
       <td><c:out value="${med.brand}"/></td>
     
-    <!-- 
-    
-    <!-- Button trigger modal -->
-
-  <!-- Add class .modal-frame and then add class .modal-bottom (or other classes from list above) to set a position to the modal 
-    
-    
-     -->
-     <!-- <td><c:out value="${med.price}"/></td>
-      <td><c:out value="${med.stock}"/></td>
-      <td><c:out value="${med.disease}"/></td>
-      <td><c:out value="${med.city}"/></td>
-      <td><fmt:formatDate value="${med.expiryDate}" pattern="dd-MM-yyyy"/>
-  </td>
-      <td><a href="editMedicine?mid=${med.mid}" class="btn btn-outline-secondary btn-sm">Edit</a></td>
-    </tr> 	--> 
   </c:forEach>
      </tbody>
 </table>

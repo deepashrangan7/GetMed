@@ -145,9 +145,19 @@ public class UserController {
 	}
 	
 	@RequestMapping("/allmed")
-	public String allmed(Model m) {
+	public String allmed(Model m,HttpSession session) {
 		
-		m.addAttribute("medici", md.findAll());
+		List<MedicineBean> mbb=md.findAll();
+		List<MedicineBean> mbb2=new ArrayList<>();
+		int x=0;
+		for(MedicineBean mm:mbb) {
+			if(mm.getStock()>0)
+				mbb2.add(mm);
+			x+=1;
+		}
+		
+		session.setAttribute("medici", mbb2);
+		
 		m.addAttribute("sb",new SearchBean());
 		return "viewallmedicine";
 	}

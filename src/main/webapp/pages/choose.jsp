@@ -62,7 +62,22 @@ $btn.addEventListener("click", signIn);
           <br /><br />
           
           
+          <c:if test="${updatepass == 'yes' }">
           
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PASSWORD UPDATED SUCCESSFULLY
+          
+          </c:if>
+          </div> 
+          <!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -->
+           <div style="color:green;text-align:center;padding-right: 10ex; "> 
+          <c:if test="${help == 'success' }">
+      
+        Thanks for reaching us.Your problem is <br/>
+        reported to the admin.
+         
+          
+          </c:if>
+          </div> 
       </div>
 
     

@@ -91,7 +91,7 @@ if(add==1)
              SignUp
             </a>
               <br/><br/>
-              <p style="text-align: center;"><a href="/" class="btn btn-outline-dark btn-lg"> Back</a></p>
+              <p style="text-align: center;"><a href="/" class="btn btn-outline-dark btn-lg">Back</a></p>
             
             
             <div class="login-pending">
@@ -106,11 +106,13 @@ if(add==1)
             </div>
           </div>
         </f:form>
-      <br/><br/>
+      <br/>
       <p style="color:red;"><%=msg%> </p>
-      <br/><br/>
-      <p style="color:green;"><%=msgs%></p>
-      <p style="text-align: center;font-size: large;color:black;"><a href="#">forgot Password?</a></p>
+      <br/>
+      <p style="color:green;"><%=msgs%></p><br/>
+      <p style="text-align: center;font-size: large;color:black;"><a href="/forgotpassword">forgot Password?</a></p>
+   <br/>
+    <p style="text-align: center;font-size: large;color:black;"><a href="/help">Any Problem in Login ? Click Here</a></p>
     
       </div>
     </div>

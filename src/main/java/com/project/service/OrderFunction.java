@@ -49,7 +49,7 @@ public class OrderFunction {
 	public synchronized Integer placeorder(Map<Integer, Integer> cart, Double total, String uid) {
 		Integer oid =0;
 
-		try {
+//		try {
 
 			List<OrderBean> ob1 = od.findOid();
 			oid= ob1.get(0).getOrderId()+1;
@@ -86,10 +86,10 @@ public class OrderFunction {
 		
 			
 			
-		} catch (Exception e) {
+//		} catch (Exception e) {
 //			System.out.println(e.getMessage());
 			System.out.println("error in ordering");
-		}
+//		}
 
 		return oid;
 

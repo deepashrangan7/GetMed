@@ -137,7 +137,7 @@ public class AdminController {
 			MedicineBean medicineBean = null;
 			if (mbean.isPresent()) {
 				medicineBean = mbean.get();
-
+				mb.setSales(medicineBean.getSales());
 				mb.setMid(medicineBean.getMid());
 
 				medicineDao.save(mb);

@@ -58,12 +58,12 @@ Update Password</h2>
 </div>
 
 <div class="tile-body">
-<form id="form" action="passwordchanged">
+<form id="form" action="passwordchanged" method="post">
 
 
 <label class="form-input"> <i class="material-icons">person</i>
-<input  type="password"  pattern=".{8,}"  autofocus="true" name="pass"
-required="true" /> <span class="label">Enter your new password of minimum length 8</span>
+<input  type="password"    autofocus="true" name="pass"
+ /> <span class="label">Enter your new password of minimum length 8</span>
 <div class="underline"></div>
 </label>
 
@@ -71,7 +71,7 @@ required="true" /> <span class="label">Enter your new password of minimum length
 
 <label class="form-input"> <i class="material-icons">person</i>
 <input  type="password" min="8" autofocus="true" name="repass"
-required="true" /> <span class="label">Re-Enter your new password</span>
+/> <span class="label">Re-Enter your new password</span>
 <div class="underline"></div>
 </label>
 <div style="text-align: center; color: red;">

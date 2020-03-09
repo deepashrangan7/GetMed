@@ -18,5 +18,8 @@ public interface OrderDao extends JpaRepository<OrderBean, Integer>{
 	@Query("select o from OrderBean o where o.status=:status")
 	public List<OrderBean> findByStatus(String status);
 	
+	@Query("select o from OrderBean o where o.userId=:status")
+	public List<OrderBean> findByUid(String status);
+	
 	
 }

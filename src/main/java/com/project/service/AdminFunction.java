@@ -1,14 +1,24 @@
 package com.project.service;
 
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import com.project.model.AdminBean;
-
-import java.util.*;
+import com.project.model.OrderBean;
 
 @Service
 public class AdminFunction {
-	
+	@Autowired
+	private OrderDao od;
+		public AdminFunction() {
+		super();
+	}
+
 	public String encryption(String pass)
 	{
 		 Base64.Encoder encoder = Base64.getEncoder(); 
@@ -23,6 +33,12 @@ public class AdminFunction {
         return password;
 	}
 	
-	
+	public List<OrderBean> getOrdersUser(String uid){
+		List<OrderBean> obj=new ArrayList<>();
+		
+		obj=od.findByUid(uid);
+		return obj;
+		
+	}
 	
 }

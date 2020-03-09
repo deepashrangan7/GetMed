@@ -127,7 +127,7 @@
  <a href="/allmed" class="btn btn-outline-info btn-lg">view all medicine</a>
 &nbsp;<a href="#" class="btn btn-outline-info btn-lg">Order Medicine</a>
  &nbsp;
- <a href="#" class="btn btn-outline-info btn-lg">Order History</a>
+ <a href="/orderhistory" class="btn btn-outline-info btn-lg">Order History</a>
  &nbsp;<a href="/viewcart" class="btn btn-outline-info btn-lg">view Cart</a>
  
 </div>

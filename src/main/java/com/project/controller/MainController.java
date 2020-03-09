@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project.MailFunction;
 import com.project.model.AdminBean;
 import com.project.model.HelpBean;
 import com.project.model.LoginBean;
@@ -30,19 +31,21 @@ import com.project.service.RecoveryDao;
 public class MainController {
 	@Autowired
 	AdminDao adminDao;
-	@Autowired
-	HelpDao helpDao;
+	@Autowired	HelpDao helpDao;
 	@Autowired
 	AdminFunction adminFunction;
 	@Autowired
 	RecoveryDao recoveryDao;
 	@Autowired
 	PasswordRecoveryFunction prf;
+@Autowired
+	MailFunction mf;
 	
 	@RequestMapping("/")
 	public String chooseRole(HttpSession session) {
 		String page = "choose";
 		session.setAttribute("add", 0);
+//		mf.sendEmail();
 		return page;
 
 	}

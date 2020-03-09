@@ -56,11 +56,16 @@ public class OrderController {
 	public String particularDetail(Integer oid,Model m,HttpSession session) {
 		if (session.getAttribute("id") == null)
 			return "choose";
+		String role=(String)session.getAttribute("role");
 		String page="partorder";
 		List<ParticularBean> pb=of.getDetails(oid);
 		m.addAttribute("partdetail",pb);
 		m.addAttribute("oidd",oid);
+		if(role.equals("ad"))
 		return page;
+		else
+			return "partorderus";
+	
 	}
 	
 	

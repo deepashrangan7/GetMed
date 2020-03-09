@@ -24,8 +24,9 @@ public class AdminController {
 	private MedicineDao medicineDao;
 
 	@RequestMapping("/viewstock")
-	public String viewstock(TypeBean type, Model model) {
-
+	public String viewstock(TypeBean type, Model model,HttpSession session) {
+		if (session.getAttribute("id") == null)
+			return "choose";
 		List<MedicineBean> mb;
 		if (type.getType() == null || type.getType().equals("all")) {
 			mb = medicineDao.findAll();
@@ -51,7 +52,9 @@ public class AdminController {
 	}
 
 	@RequestMapping("/editedview")
-	public String editedview(Integer mid, Model model) {
+	public String editedview(Integer mid, Model model,HttpSession session) {
+		if (session.getAttribute("id") == null)
+			return "choose";
 		Optional<MedicineBean> o = medicineDao.findById(mid);
 
 		if (o.isPresent())
@@ -147,6 +150,8 @@ public class AdminController {
 
 	@RequestMapping("/adminhomepage")
 	public String adminhome(HttpSession session) {
+		if (session.getAttribute("id") == null)
+			return "choose";
 		session.setAttribute("addm", 0);
 
 		return "admin";

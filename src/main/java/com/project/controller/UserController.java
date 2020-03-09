@@ -25,7 +25,9 @@ public class UserController {
 	private MedicineDao md;
 
 	@RequestMapping("/uhome")
-	public String uhome(Model m) {
+	public String uhome(Model m,HttpSession session) {
+		if (session.getAttribute("id") == null)
+			return "choose";
 		m.addAttribute("sb", new SearchBean());
 		m.addAttribute("err",0);
 		
@@ -36,6 +38,8 @@ public class UserController {
 	@RequestMapping("/viewmedicine")
 	public String viewmedicine(@Valid @ModelAttribute("sb") SearchBean sb, BindingResult br, Model m,
 			HttpSession session) {
+		if (session.getAttribute("id") == null)
+			return "choose";
 		if (br.hasErrors()) {
 			System.out.println("error");
 			return "viewmedicine";
@@ -101,6 +105,8 @@ public class UserController {
 
 	@RequestMapping("/sort")
 	public String sort(String type, String order, Model m,HttpSession session) {
+		if (session.getAttribute("id") == null)
+			return "choose";
 		String page = "viewallmedicine";
 		List<MedicineBean> mb = new ArrayList<>();
 		if (type.equals("name")) {
@@ -146,7 +152,8 @@ public class UserController {
 	
 	@RequestMapping("/allmed")
 	public String allmed(Model m,HttpSession session) {
-		
+		if (session.getAttribute("id") == null)
+			return "choose";
 		List<MedicineBean> mbb=md.findAll();
 		List<MedicineBean> mbb2=new ArrayList<>();
 		int x=0;
@@ -165,7 +172,8 @@ public class UserController {
 	@RequestMapping("/sorted")
 	public String sortsearch(String type,String order,HttpSession session,Model model)
 	{
-		
+		if (session.getAttribute("id") == null)
+			return "choose";
 		List<MedicineBean> prevmb=(List<MedicineBean>)session.getAttribute("mediciness");
 		List<MedicineBean> done=new ArrayList<MedicineBean>();
 		List<MedicineBean> mb=new ArrayList<>();

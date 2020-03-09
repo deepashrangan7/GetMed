@@ -89,7 +89,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="/uhome" style="color: white;"><span class="sr-only">(current)</span></a>
         </li>
-        
+        <li> <p>${uname}</p></li>
       </ul>
       <f:form class="form-inline my-2 my-lg-0" action="viewmedicine" method="post" modelAttribute="sb">
 
@@ -113,8 +113,8 @@
         </div>
 -->
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search medicine</button>
-      </f:form>
-   <a href="#" class="btn btn-outline-danger btn-md">Log Out</a>
+      </f:form>&nbsp;
+   <a href="/logout" class="btn btn-outline-danger btn-md">Log Out</a>
   
     </div>
    </nav>
@@ -125,85 +125,16 @@
  <div class="container" style="text-align: center">
  
  <a href="/allmed" class="btn btn-outline-info btn-lg">view all medicine</a>
-&nbsp;
+&nbsp;<a href="#" class="btn btn-outline-info btn-lg">Order Medicine</a>
+ &nbsp;
  <a href="#" class="btn btn-outline-info btn-lg">Order History</a>
+ &nbsp;<a href="/viewcart" class="btn btn-outline-info btn-lg">view Cart</a>
  
 </div>
 
 
   <div style="padding-top: 2em; padding-bottom: 2em;" class=" d-flex flex-row align-items-start">
-<!-- 
 
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="alo.jpg" alt="Avatar" style="width:100%;height:100%;">
-        </div>
-        <div class="flip-card-back">
-          <h1>Aloe Vera Gel</h1>
-          <p>
-
-            Aloe vera is most commonly used as a topical medication, rubbed onto the skin rather than eaten. It has long
-            been known as a treatment for sores, particularly burns, including sunburns
-
-
-          </p>
-
-        </div>
-      </div>
-    </div>
- -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"
-      style="padding-top: 0em;width: 60%;height: 60%;">
-
-
-
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol>
-
-
-
-      <div class="carousel-inner">
-
-
-
-        <div class="carousel-item active">
-          <img class="d-block w-100" src="pic1.jpg" alt="First slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="pic2.jpg" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="pic3.jfif" alt="Third slide">
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-    <!--     <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <img src="med2.jfif" alt="Avatar" style="width:300px;height:300px;">
-        </div>
-        <div class="flip-card-back">
-          <h1>Neem Oil</h1>
-          <p>Maintain the softness, suppleness, and radiance of skin and hair.</p>
-          <p>Stimulate the growth of thicker, longer, and stronger hair.</p>
-        </div>
-      </div>
-    </div>
-
- -->
-About Us
   </div>
 
  

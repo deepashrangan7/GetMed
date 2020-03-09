@@ -30,6 +30,8 @@ public class OrderController {
 	private OrderDao od;
 	@RequestMapping("/viewordersadmin")
 	public String viewOrdersAdmin(@ModelAttribute("filter")FilterBean filter,BindingResult br,Model m,HttpSession session) {
+		if (session.getAttribute("id") == null)
+			return "choose";
 		String page="viewordersad";
 		System.out.println(filter.getFilter());
 		List<OrderBean> ob=null;
@@ -51,19 +53,31 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/viewparticluardetail")
-	public String particularDetail(Integer oid,Model m) {
+	public String particularDetail(Integer oid,Model m,HttpSession session) {
+		if (session.getAttribute("id") == null)
+			return "choose";
 		String page="partorder";
 		List<ParticularBean> pb=of.getDetails(oid);
 		m.addAttribute("partdetail",pb);
+		m.addAttribute("oidd",oid);
 		return page;
 	}
 	
 	
 	@RequestMapping("/gohome")
-	public String gohome(Model m) {
+	public String gohome(Model m,HttpSession session) {
+		if (session.getAttribute("id") == null)
+			return "choose";
 		m.addAttribute("sb",new SearchBean());
 		m.addAttribute("err", 0);
 		return"userHome";
+	}
+	
+	@RequestMapping("/changestatus")
+	public String changeStatus(String status,Integer oid) {
+		
+		of.change(oid,status);
+		return "redirect:viewordersadmin";
 	}
 	
 }

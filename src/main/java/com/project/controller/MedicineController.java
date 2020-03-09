@@ -29,9 +29,10 @@ public class MedicineController {
 	private Map<Integer, Integer> cart;
 
 	@RequestMapping("/orderdone")
-	public synchronized String ordermedicine(HttpSession session) {
-
-		String page = "viewcart";
+	public synchronized String ordermedicine(HttpSession session,Model m) {
+		if (session.getAttribute("id") == null)
+			return "choose";
+		String page = "paid";
 
 		String stk = "some stocks sold out";
 		int i = 0;
@@ -61,8 +62,9 @@ public class MedicineController {
 			Double total = (Double) session.getAttribute("total");
 			AdminBean ab = (AdminBean) session.getAttribute("id");
 			String uid = ab.getEmailId();
-			of.placeorder(cart, total, uid);
-			System.out.println("order placed " + uid + " " + total);
+			Integer oid=of.placeorder(cart, total, uid);
+//			System.out.println("order placed " + uid + " " + total);
+		m.addAttribute("oids",oid);
 			session.setAttribute("nostock", "");
 			cart.clear();
 			session.setAttribute("cart", null);
@@ -74,6 +76,8 @@ public class MedicineController {
 
 	@RequestMapping("/pay")
 	public synchronized String payment(HttpSession session) {
+		if (session.getAttribute("id") == null)
+			return "choose";
 		String stk = "some stocks sold out";
 		int i = 0;
 		try {Thread.sleep(2000);}catch (Exception e) {
@@ -106,6 +110,8 @@ public class MedicineController {
 
 	@RequestMapping("/addtocart")
 	public String addToCart(Integer mid, Integer opt, Model m, HttpSession session) {
+		if (session.getAttribute("id") == null)
+			return "choose";
 		cart.put(mid, 1);
 		System.out.println("opt "+opt+ " added");
 		session.setAttribute("cart", cart);
@@ -120,6 +126,8 @@ public class MedicineController {
 
 	@RequestMapping("/removefromcart")
 	public String removeFromCart(Integer mid, Integer opt, Model m, HttpSession session) {
+		if (session.getAttribute("id") == null)
+			return "choose";
 		cart.remove(mid);
 		System.out.println("opt "+opt+ " remove");
 		session.setAttribute("cart", cart);
@@ -133,6 +141,8 @@ public class MedicineController {
 
 	@RequestMapping("/removefromcart2")
 	public String removeFromCart2(Integer mid, Model m, HttpSession session) {
+		if (session.getAttribute("id") == null)
+			return "choose";
 		cart.remove(mid);
 		session.setAttribute("cart", cart);
 		m.addAttribute("sb", new SearchBean());
@@ -162,6 +172,8 @@ public class MedicineController {
 
 	@RequestMapping("/viewcart")
 	public String viewCart(Model m, HttpSession session) {
+		if (session.getAttribute("id") == null)
+			return "choose";
 		List<MedicineBean> mb = new ArrayList<>();
 		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
 			Integer mid = entry.getKey();
@@ -186,7 +198,8 @@ public class MedicineController {
 
 	@RequestMapping("/addquantity")
 	public String addQuantity(Integer mid, Integer quantity, HttpSession session) {
-
+		if (session.getAttribute("id") == null)
+			return "choose";
 		// System.out.println(mid+" "+quantity);
 //			
 //		Map<Integer,Integer> o=(Map<Integer,Integer>)session.getAttribute("cart");

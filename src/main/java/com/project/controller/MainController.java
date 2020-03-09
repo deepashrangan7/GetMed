@@ -15,24 +15,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.model.AdminBean;
+import com.project.model.HelpBean;
 import com.project.model.LoginBean;
 import com.project.model.RecoveryBean;
 import com.project.model.SearchBean;
 import com.project.service.AdminDao;
 import com.project.service.AdminFunction;
+import com.project.service.HelpDao;
+import com.project.service.PasswordRecoveryFunction;
 import com.project.service.RecoveryDao;
-import com.project.service.Validation;
 
 
 @Controller
 public class MainController {
 	@Autowired
 	AdminDao adminDao;
-
+	@Autowired
+	HelpDao helpDao;
 	@Autowired
 	AdminFunction adminFunction;
 	@Autowired
 	RecoveryDao recoveryDao;
+	@Autowired
+	PasswordRecoveryFunction prf;
 	
 	@RequestMapping("/")
 	public String chooseRole(HttpSession session) {
@@ -48,6 +53,10 @@ public class MainController {
 		session.setAttribute("id", null);
 		session.setAttribute("role", null);
 		session.setAttribute("addm", null);
+		session.setAttribute("cart", null);
+		session.setAttribute("mediciness", null);
+		session.setAttribute("mid", null);
+		session.setAttribute("medici", null);
 		
 		return "choose";
 	}
@@ -142,7 +151,7 @@ public class MainController {
 			Optional<AdminBean> o = adminDao.findById(login.getEmail().trim());
 			if (o.isPresent())
 				session.setAttribute("id", o.get());
-
+session.setAttribute("uname", o.get().getFirstName()+" "+o.get().getLastName());
 			page = "userHome";
 		} else {
 			AdminBean ab = adminDao.validateAdmin(login.getEmail().trim(),
@@ -185,4 +194,91 @@ public class MainController {
 		return "login";
 	}
 
+	
+	
+	
+	@RequestMapping("/forgotpassword")
+	public String forgotpassword()
+	{
+	System.out.println("asddfg");
+	return "updatepassword";
+	}
+
+
+	@RequestMapping("/newpassword")
+	public String newpassword(String id,String question,String answer,Model mv,HttpSession session)
+	{
+
+	System.out.println(id+" "+question+" "+answer);
+
+	RecoveryBean recoveryBean = prf.update(id, question, answer);
+
+
+
+	if(recoveryBean==null)
+	{
+	System.out.println("WRONG");
+	mv.addAttribute("result","wrong" );
+	return "updatepassword";
+	}
+
+	else
+	{
+	session.setAttribute("username", recoveryBean.getDesgination());
+
+	System.out.println(recoveryBean.getDesgination());
+
+	return "passwordchanged";
+	}
+
+
+	}
+
+	@RequestMapping("/passwordchanged")
+	public String passwordchanged(String pass,String repass,Model m,HttpSession session,Model mo)
+	{
+
+	System.out.println("qwertyuiop:"+pass+"  "+repass);
+
+	if(!(pass.equals(repass)))
+	{
+	mo.addAttribute("result", "wrong");
+	return "passwordchanged";
+	}
+
+	else
+	{
+	String s=(String)session.getAttribute("username");
+	System.out.println(s);
+
+
+	prf.updatepassword(adminFunction.encryption(pass),s );
+
+	mo.addAttribute("updatepass", "yes");
+	return "choose";
+
+	}
+
+
+	}
+
+
+	@RequestMapping("/help")
+	public String help(@ModelAttribute("help") HelpBean help) {
+	System.out.println("helpper");
+
+	return "help";
+	}
+
+	@RequestMapping("/helpper")
+	public String helpper(@ModelAttribute("help") HelpBean help,Model m) {
+	System.out.println("success");
+
+	helpDao.save(help);
+	System.out.println("success2");
+	m.addAttribute("help","success");
+
+	return "choose";
+	}
+	
 }

@@ -60,14 +60,14 @@
 				modelAttribute="addmed">
 				<label class="form-input"> <i class="material-icons">person</i>
 					<f:input path="name" type="text" autofocus="true" name="name"
-						required="true" /> <span class="label">Medicine Name</span>
+						/> <span class="label">Medicine Name</span>
 					<div class="underline"></div>
 				</label>
 				<p style="color: red;">
 					<f:errors path="name"></f:errors>
 				</p>
 				<label class="form-input"> <i class="material-icons">person</i>
-					<f:input path="brand" type="text" name="brand" required="true" />
+					<f:input path="brand" type="text" name="brand"  />
 					<span class="label">Brand Name</span>
 					<div class="underline"></div>
 				</label>
@@ -76,14 +76,14 @@
 				</p>
 				<label class="form-input"> <i class="material-icons">person</i>
 					<f:input path="price" type="number" name="price" step="0.1"
-						required="true" /> <span class="label">Price</span>
+						/> <span class="label">Price</span>
 					<div class="underline"></div>
 				</label>
 				<p style="color: red;">
 					<f:errors path="price"></f:errors>
 				</p>
 				<label class="form-input"> <i class="material-icons">person</i>
-					<f:input type="number" path="stock" name="stock" required="true" min="0" />
+					<f:input type="number" path="stock" name="stock"  min="0" />
 					<span class="label">Stock</span>
 					<div class="underline"></div>
 				</label>
@@ -91,7 +91,7 @@
 					<f:errors path="name"></f:errors>
 				</p>
 				<label class="form-input"> <i class="material-icons">person</i>
-					<f:input type="text" name="disease" path="disease" required="true" />
+					<f:input type="text" name="disease" path="disease"  />
 					<span class="label">disease</span>
 					<div class="underline"></div>
 				</label>
@@ -106,7 +106,7 @@
 					<div class="col-md-5 mb-5" style="padding-left: 3em;">
 						
 						<f:select
-							class="custom-select" name="type" path="type" required="true">
+							class="custom-select" name="type" path="type" >
 						<f:option value="normal">Normal</f:option>
 							<f:option value="vaccine">Vaccine</f:option>
 						<f:option value="capsule">capsule</f:option>
@@ -121,7 +121,7 @@
 
 
 				<label class="form-input"> <i class="material-icons">person</i>
-					<f:input path="city" type="text" name="city" required="true" /> <span
+					<f:input path="city" type="text" name="city"  /> <span
 					class="label">City</span>
 					<div class="underline"></div>
 				</label>
@@ -132,7 +132,7 @@
 
 				<label class="form-input"> <i class="material-icons">person</i>
 					<f:input path="expiryDate" type="date" placeholder="expiry Date"
-						name="expiryDate" required="true" /> <span class="label"></span>
+						name="expiryDate" /> <span class="label"></span>
 					<div class="underline"></div>
 				</label>
 				<p style="color: red;">

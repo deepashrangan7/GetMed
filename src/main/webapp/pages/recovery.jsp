@@ -64,7 +64,7 @@
 				modelAttribute="rb">
 				<label class="form-input"> <i class="material-icons">person</i>
 					<f:input type="text" path="a1" autofocus="true" name="a1"
-						required="true" /> <span class="label">What is your Nick
+						 /> <span class="label">What is your Nick
 						name?</span>
 					<div class="underline"></div>
 				</label>
@@ -73,7 +73,7 @@
 				</p>
 				<label class="form-input"> <i class="material-icons">person</i>
 					<f:input path="a2" type="text" autofocus="true" name="a2"
-						required="true" /> <span class="label">What is your
+						/> <span class="label">What is your
 						Favourite colour?</span>
 					<div class="underline"></div>
 				</label>
@@ -82,7 +82,7 @@
 				</p>
 				<label class="form-input"> <i class="material-icons">person</i>
 					<f:input path="a3" type="text" autofocus="true" name="a3"
-						required="true" /> <span class="label">Who is your
+						/> <span class="label">Who is your
 						Favourite Hero?</span>
 					<div class="underline"></div>
 				</label>

@@ -46,13 +46,13 @@ public class OrderFunction {
 
 	}// method1
 
-	public synchronized boolean placeorder(Map<Integer, Integer> cart, Double total, String uid) {
-		boolean flag = false;
+	public synchronized Integer placeorder(Map<Integer, Integer> cart, Double total, String uid) {
+		Integer oid =0;
 
 		try {
 
 			List<OrderBean> ob1 = od.findOid();
-			Integer oid = ob1.get(0).getOrderId()+1;
+			oid= ob1.get(0).getOrderId()+1;
 			List<MedicineOrdered> morder = new ArrayList<>();
 			MedicineBean mbb = null;
 			
@@ -77,13 +77,13 @@ public class OrderFunction {
 			
 			
 			
-			Thread.sleep(900);
+			
 			OrderBean ob = new OrderBean();
 			ob.setAmount(total);
 			ob.setStatus("inprogress");
 			ob.setUserId(uid);
 			od.save(ob);
-			Thread.sleep(2000);
+		
 			
 			
 		} catch (Exception e) {
@@ -91,7 +91,7 @@ public class OrderFunction {
 			System.out.println("error in ordering");
 		}
 
-		return flag;
+		return oid;
 
 	}// method place
 
@@ -129,4 +129,15 @@ public class OrderFunction {
 		return pb;
 	}
 
+	public void change(Integer oid,String status) {
+		OrderBean ob=null;
+		Optional<OrderBean> o=od.findById(oid);
+		if(o.isPresent())
+		{
+			ob=o.get();
+		}
+		ob.setStatus(status);
+		od.save(ob);
+	}
+	
 }

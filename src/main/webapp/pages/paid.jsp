@@ -1,4 +1,7 @@
 
+<%@page import="java.util.Map"%>
+<%@page import="com.project.model.MedicineBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -13,28 +16,7 @@
 <html>
 
 <head>
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $(".dropdown-menu li").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
 <title>GetMed</title>
-  <style>
-  
-  #myInput {
-    padding: 20px;
-    margin-top: -6px;
-    border: 0;
-    border-radius: 0;
-    background: #f1f1f1;
-  }
-  </style>
-
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -116,88 +98,21 @@ $(document).ready(function(){
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="/adminhomepage"
-						style="color: white;">Home <span class="sr-only"></span></a>
+					<li class="nav-item active"><a class="nav-link" href="/gohome"
+						style="color: white;">Home <span class="sr-only">(current)</span></a>
 					</li>
-<li class="nav-item"><a class="nav-link text-light" href="/logout">Logout</a></li>
-			
+
 				</ul>
 							</div>
 		</nav>
 	</div>
 	<br />
-	<p style="text-align: center;">
-		<f:errors path="name"></f:errors>
-	</p>
-
-	<c:choose>
-		<c:when test="${fn:length(allorders) eq 0}">
-			<h2 style="text-align: center"> No Orders Received </h2>
-		</c:when>
-		<c:otherwise>
-			<p style="text-align: center; color: green; font-size: 30px; font-weight: bolder;">ORDERS
-				</p>
-			<br />
-			<f:form action="viewordersadmin" method="post" modelAttribute="filter">
-
-				<input type="submit" name="submit" value="Filter"
-					style="float: right;" class="btn btn-outline-secondary btn-md">
-
-
-<div class="col-auto my-1" style="float:right;">
-
-          <f:select path="filter" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="filter">
-
-            <f:option value="all" selected="true">All</f:option>
-            <f:option value="inprogress">In Progress</f:option>
-            <f:option value="shipped">Shipped</f:option>
-            <f:option value="delivered">Delivered</f:option>
-          </f:select>
-        </div>
-
-
-				<p style="float: right; font-size: 20px; font-weight: bold;">Filter
-					By</p>
-
-
-			</f:form>
-
-			
-			<br />
-			<br />
-			<table class="table table-hover" style="padding-top: 5em;">
-
-				<thead>
-					<tr>
-
-						<th scope="col">Order Id</th>
-						<th scope="col">Total Amount</th>
-						<th scope="col">Order Date & Time</th>
-						<th scope="col">Paid</th>
-						<th scope="col">Status</th>
-						<th scope="col">View Details</th>
-						
-
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${allorders}" var="ord">
-						<tr>
-
-							<th><c:out value="${ord.orderId}" /></th>
-							<td><c:out value="${ord.amount}" /></td>
-							<td><c:out value="${ord.orderDate}" /></td>
-							<td>Yes</td>
-							<td><c:out value="${ord.status}" /></td>
-							<td><a href="/viewparticluardetail?oid=${ord.orderId}">View</a></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-
-		</c:otherwise>
-	</c:choose>
-
+	
+<h4 style="text-align:center;">Your Order is Successful</h4>
+<h4 style="text-align:center;">Your Order Id is : ${oids}</h4>
+	
+	<p style="text-align: center;"><a href="/allmed" class="btn btn-outline-success btn-lg">Continue Shopping</a></p>&nbsp;&nbsp;
+<p style="text-align: center;"><a href="/logout" class="btn btn-outline-danger btn-lg">LOGOUT</a></p>
 
 </body>
 

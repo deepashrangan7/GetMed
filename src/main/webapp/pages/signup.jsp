@@ -23,6 +23,13 @@
         }
 
         $btn.addEventListener("click", signIn);
+
+function fun(){
+document.getElementById("age").value="";
+alert("hii")
+	
+}
+        
     </script>
 
    <link rel="stylesheet" href="style1.css">
@@ -75,7 +82,7 @@
 
                 <label class="form-input">
                     <i class="material-icons">person</i>
-                    <f:input path="lastName" type="text" autofocus="true" name="lastName" />
+                    <f:input path="lastName" type="text" autofocus="true" id="lastName" name="lastName" />
                     <span class="label">Last Name</span>
                     <p style="color:red;"><f:errors path="lastName"></f:errors></p>
                 
@@ -91,7 +98,7 @@
 
                 <label class="form-input">
                     <i class="material-icons">person</i>
-                    <f:input type="number" path="age" min="1" max="150" name="age"  />
+                    <f:input type="number" path="age" min="1" max="150" name="age"  id="age"/>
                     <span class="label">Age</span>
                     <p style="color:red;"><f:errors path="age"></f:errors></p>
                 
@@ -106,7 +113,7 @@
                 <label class="form-input">
                     <i class="material-icons">phone</i>
                     <f:input type="text" name="contact" path="contact" pattern="[6-9]{1}[0-9]{9}" />
-                    <span class="label">Phone</span>
+                    <span class="label">Contact Number</span>
                     <p style="color:red;"><f:errors path="contact"></f:errors></p>
                 
                 </label>
@@ -117,7 +124,11 @@
                         tabindex="0">
                         <span>Next</span>
                     </button>
-                    <input type="reset" value="clear" class="btn btn-irenic float-right" tabindex="0">
+                    
+                    
+                   
+<a href="/sign">Clear</a>
+
 
                      <div class="login-pending">
                         <div class=spinner>

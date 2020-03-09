@@ -10,22 +10,6 @@
 <html lang="en">
 
 <head>
-<script>
-	var $btn = document.getElementById("submit");
-	var $form = document.getElementById("form")
-
-	function signIn() {
-		if ($form.checkValidity()) {
-			$btn.classList.add('pending');
-			window.setTimeout(function() {
-				$btn.classList.add('granted');
-			}, 1500);
-		}
-	}
-
-	$btn.addEventListener("click", signIn);
-</script>
-<link rel="stylesheet" href="style1.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -49,8 +33,7 @@
 
 
           <h4 class="modal-title">Medicine Details</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
+          
         
         <div class="modal-body">
         <table>
@@ -115,7 +98,7 @@
 
 
 
-
+<br/>
 					<a href="editMedicine?mid=${meds.mid}" id="submit" role="button" type="submit"
 						class="btn btn-irenic float-left btn-lg" tabindex="0">
 						<span>edit</span>

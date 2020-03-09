@@ -75,22 +75,23 @@ if(add==1)
             <i class="material-icons">person</i>
             <f:input type="text" autofocus="true" name="email"  path="email" />
             <span class="label">Email Id</span>
-          <f:errors path="email"></f:errors>
-           </label>
+       <p style="color:red;">   <f:errors path="email"></f:errors>
+           </p></label>
           <label class="form-input">
             <i class="material-icons">lock</i>
             <input type="password" path="password" name="password"  />
             <span class="label">Password</span>
            </label>
-          <f:errors path="password"></f:errors>
-          
+          <p style="color:red;"> <f:errors path="password"></f:errors>
+          </p>
           <div class="submit-container clearfix" style="margin-top: 2rem;">          
             <input  role="button" type="submit" class="btn btn-outline-dark float-left btn-lg" tabindex="0" value="login"/>
             
             <a  href="/sign" role="button" type="button" class="btn btn-outline-dark float-right btn-lg" tabindex="0">
              SignUp
             </a>
-              
+              <br/><br/>
+              <p style="text-align: center;"><a href="/" class="btn btn-outline-dark btn-lg"> Back</a></p>
             
             
             <div class="login-pending">

@@ -14,26 +14,31 @@
 
 <head>
 <script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $(".dropdown-menu li").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
+	$(document).ready(
+			function() {
+				$("#myInput").on(
+						"keyup",
+						function() {
+							var value = $(this).val().toLowerCase();
+							$(".dropdown-menu li").filter(
+									function() {
+										$(this).toggle(
+												$(this).text().toLowerCase()
+														.indexOf(value) > -1)
+									});
+						});
+			});
 </script>
 <title>GetMed</title>
-  <style>
-  
-  #myInput {
-    padding: 20px;
-    margin-top: -6px;
-    border: 0;
-    border-radius: 0;
-    background: #f1f1f1;
-  }
-  </style>
+<style>
+#myInput {
+	padding: 20px;
+	margin-top: -6px;
+	border: 0;
+	border-radius: 0;
+	background: #f1f1f1;
+}
+</style>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -116,13 +121,13 @@ $(document).ready(function(){
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="/uhome"
-						style="color: white;">Home <span class="sr-only"></span></a>
-					</li>
-<li class="nav-item"><a class="nav-link text-light" href="/logout">Logout</a></li>
-			
+					<li class="nav-item active"><a class="nav-link" href="/adminhomepage"
+						style="color: white;">Home <span class="sr-only"></span></a></li>
+					<li class="nav-item"><a class="nav-link text-light"
+						href="/logout">Logout</a></li>
+
 				</ul>
-							</div>
+			</div>
 		</nav>
 	</div>
 	<br />
@@ -132,25 +137,51 @@ $(document).ready(function(){
 
 	<c:choose>
 		<c:when test="${fn:length(partdetail) eq 0}">
-			<h2 style="text-align: center"> No Orders Received </h2>
+			<h2 style="text-align: center">No Orders Received</h2>
 		</c:when>
 		<c:otherwise>
-			<p style="text-align: center; color: green; font-size: 30px; font-weight: bolder;">ORDERS
-				</p>
+			<p
+				style="text-align: center; color: green; font-size: 30px; font-weight: bolder;">ORDERS
+			</p>
+			
 			<br />
+		<p style="text-align: right;font-size: 18px;font-weight: bolder;">Order ID: ${partdetail.get(0).oid}</p>
+		<br/>
+		<p style="text-align: right;font-size: 18px;font-weight: bold;">Order Date: ${partdetail.get(0).orderDate}</p>
+		<br/>
+		<p style="text-align: right;font-size: 18px;font-weight: bold;">Total Bill Amount: ${partdetail.get(0).totalAmount}</p>
+		<br/>
+			<p style="font-size: 20px;font-weight: bolder;">Change Status:</p>
+			<form action="/changestatus?oid=${oidd}" method="post">
+				<div class="col-auto my-1">
+
+					<select class="custom-select mr-sm-2" name="status" id="inlineFormCustomSelect"
+						name="type">
+
+						<option value="inprogress" selected>In Progress</option>
+						<option value="shipped">Shipped</option>
+						<option value="delivered">Delivered</option>
+
+					</select>
+				<br/><br/>
+				<input type="submit" value="change status" class="btn btn-outline-success btn-lg">
+				
+				</div>
+				
+			</form>
 			<br />
 			<table class="table table-hover" style="padding-top: 5em;">
 
 				<thead>
 					<tr>
 
-						<th scope="col">Id</th>
+						<th scope="col">Medicine Id</th>
 						<th scope="col">Name</th>
 						<th scope="col">Brand</th>
 						<th scope="col">Type</th>
 						<th scope="col">Quantity</th>
-						<th scope="col">Total COST</th>
-						
+						<th scope="col">UnitCOST</th>
+
 
 					</tr>
 				</thead>
@@ -161,7 +192,7 @@ $(document).ready(function(){
 							<th><c:out value="${ord.mid}" /></th>
 							<td><c:out value="${ord.name}" /></td>
 							<td><c:out value="${ord.brand}" /></td>
-							<td><c:out value="${ord.type}"/></td>
+							<td><c:out value="${ord.type}" /></td>
 							<td><c:out value="${ord.quantity}" /></td>
 							<td><c:out value="${ord.unitPrice}" /></td>
 						</tr>
@@ -171,8 +202,9 @@ $(document).ready(function(){
 
 		</c:otherwise>
 	</c:choose>
-
-
+	<br/>
+<p style="text-align: center;"><a  class="btn btn-outline-secondary btn-lg" href="/viewordersadmin"> Back</a>
+</p>
 </body>
 
 </html>

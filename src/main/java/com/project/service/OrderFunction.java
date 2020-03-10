@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
+import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,46 +53,54 @@ public class OrderFunction {
 
 	}// method1
 
+	@Transactional
 	public synchronized Integer placeorder(Map<Integer, Integer> cart, Double total, String uid) {
 		Integer oid = 0;
 
-//		try {
+		try {
+			Collections.synchronizedMap(cart);
+			List<OrderBean> ob1 = od.findOid();
+			if (ob1 == null || ob1.size() == 0)
+				oid = 1;
+			else
+				oid = ob1.get(0).getOrderId() + 1;
+			List<MedicineOrdered> morder = new ArrayList<>();
+			MedicineBean mbb = null;
+			
 
-		List<OrderBean> ob1 = od.findOid();
-		if(ob1==null||ob1.size()==0)
-			oid=1;
-		else
-		oid = ob1.get(0).getOrderId() + 1;
-		List<MedicineOrdered> morder = new ArrayList<>();
-		MedicineBean mbb = null;
+				for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
+					Integer mid1 = entry.getKey();
+					morder.add(new MedicineOrdered());
+					morder.get(morder.size() - 1).setMid(mid1);
+					morder.get(morder.size() - 1).setQuantity(cart.get(mid1));
+					morder.get(morder.size() - 1).setOid(oid);
+					md.save(morder.get(morder.size() - 1));
 
-		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
-			Integer mid1 = entry.getKey();
-			morder.add(new MedicineOrdered());
-			morder.get(morder.size() - 1).setMid(mid1);
-			morder.get(morder.size() - 1).setQuantity(cart.get(mid1));
-			morder.get(morder.size() - 1).setOid(oid);
-			md.save(morder.get(morder.size() - 1));
+					Optional<MedicineBean> o = medicineDao.findById(mid1);
+					if (o.isPresent()) {
+			
+						mbb = o.get();
+						mbb.setStock(mbb.getStock() - cart.get(mid1));
+						mbb.setSales(mbb.getSales() + cart.get(mid1));
+						synchronized (this) {
+						medicineDao.save(mbb);
+					}
+				} // for
 
-			Optional<MedicineBean> o = medicineDao.findById(mid1);
-			if (o.isPresent()) {
-				mbb = o.get();
-				mbb.setStock(mbb.getStock() - cart.get(mid1));
-				mbb.setSales(mbb.getSales() + cart.get(mid1));
-				medicineDao.save(mbb);
 			}
-		} // for
+			OrderBean ob = new OrderBean();
 
-		OrderBean ob = new OrderBean();
-		ob.setAmount(total);
-		ob.setStatus("inprogress");
-		ob.setUserId(uid);
-		od.save(ob);
+				ob.setAmount(total);
+				ob.setStatus("inprogress");
+				ob.setUserId(uid);
+				synchronized (this) {
+				od.save(ob);
 
-//		} catch (Exception e) {
+			}
+		} catch (Exception e) {
 //			System.out.println(e.getMessage());
-		System.out.println("error in ordering");
-//		}
+			System.out.println("error in ordering");
+		}
 
 		return oid;
 
@@ -136,11 +147,11 @@ public class OrderFunction {
 		if (o.isPresent()) {
 			ob = o.get();
 		}
-		AdminBean ab=null;
-		Optional<AdminBean> o1=ad.findById(ob.getUserId().trim());
-		if(o1.isPresent())
-			ab=o1.get();
-		String name=ab.getFirstName()+" "+ab.getLastName();
+		AdminBean ab = null;
+		Optional<AdminBean> o1 = ad.findById(ob.getUserId().trim());
+		if (o1.isPresent())
+			ab = o1.get();
+		String name = ab.getFirstName() + " " + ab.getLastName();
 		mf.sendEmail(ob.getUserId().trim(), oid, status, name);
 		ob.setStatus(status);
 		od.save(ob);

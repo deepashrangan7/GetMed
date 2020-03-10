@@ -5,14 +5,15 @@ import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.project.model.MedicineBean;
 import com.project.model.OrderBean;
 
 @Service
 public class AdminFunction {
+	@Autowired
+private	MedicineDao md;
 	@Autowired
 	private OrderDao od;
 		public AdminFunction() {
@@ -40,5 +41,19 @@ public class AdminFunction {
 		return obj;
 		
 	}
+	
+	public Integer anyNotification() {
+		Integer count=0;
+		
+		List<MedicineBean> mb=md.findAll();
+	
+		for(MedicineBean m:mb) {
+			if(m.getStock()==0) {
+				count+=1;
+			}
+		}
+		return count;
+	}
+	
 	
 }

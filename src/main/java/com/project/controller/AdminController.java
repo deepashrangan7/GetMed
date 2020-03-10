@@ -16,15 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.project.model.AdminBean;
 import com.project.model.MedicineBean;
 import com.project.model.TypeBean;
+import com.project.service.AdminFunction;
 import com.project.service.MedicineDao;
 
 @Controller
 public class AdminController {
 	@Autowired
 	private MedicineDao medicineDao;
+	@Autowired
+	private AdminFunction adminFunction;
 
 	@RequestMapping("/viewstock")
-	public String viewstock(TypeBean type, Model model,HttpSession session) {
+	public String viewstock(TypeBean type, Model model, HttpSession session) {
 		if (session.getAttribute("id") == null)
 			return "choose";
 		List<MedicineBean> mb;
@@ -46,13 +49,13 @@ public class AdminController {
 		AdminBean ab = (AdminBean) session.getAttribute("id");
 
 		List<MedicineBean> md = medicineDao.findAll();
-		// System.out.println(md);
+
 		model.addAttribute("medicines", md);
 		return "adminHome";
 	}
 
 	@RequestMapping("/editedview")
-	public String editedview(Integer mid, Model model,HttpSession session) {
+	public String editedview(Integer mid, Model model, HttpSession session) {
 		if (session.getAttribute("id") == null)
 			return "choose";
 		Optional<MedicineBean> o = medicineDao.findById(mid);
@@ -92,10 +95,10 @@ public class AdminController {
 			if (o.isPresent()) {
 				MedicineBean mbm = o.get();
 
-				mbm.setStock(medicineBean.getStock()+mbm.getStock());
+				mbm.setStock(medicineBean.getStock() + mbm.getStock());
 				mbm.setExpiryDate(medicineBean.getExpiryDate());
 				mbm.setPrice(medicineBean.getPrice());
-				
+
 				medicineDao.save(mbm);
 
 			}
@@ -144,16 +147,17 @@ public class AdminController {
 			}
 		}
 		session.setAttribute("addm", 2);
-		return page;
+		return "redirect:adminhomepage";
 
 	}
 
 	@RequestMapping("/adminhomepage")
-	public String adminhome(HttpSession session) {
+	public String adminhome(HttpSession session, Model m) {
 		if (session.getAttribute("id") == null)
 			return "choose";
 		session.setAttribute("addm", 0);
-
+		Integer not = adminFunction.anyNotification();
+		m.addAttribute("noti", not);
 		return "admin";
 	}
 
@@ -193,7 +197,7 @@ public class AdminController {
 		medicineDao.save(medicineBean);
 
 		session.setAttribute("addm", 3);
-		return page;
+		return "redirect:adminhomepage";
 	}
 
 	@RequestMapping("/viewupdate")
@@ -207,4 +211,11 @@ public class AdminController {
 		return "viewupdate";
 	}
 
+	@RequestMapping("/notification")
+	public String notifypage(HttpSession session,Model m) {
+		String page="notificationpage";
+		session.setAttribute("notic", 1);
+		return page;
+	}
+	
 }

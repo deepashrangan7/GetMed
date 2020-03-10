@@ -26,21 +26,21 @@ import com.project.service.HelpDao;
 import com.project.service.PasswordRecoveryFunction;
 import com.project.service.RecoveryDao;
 
-
 @Controller
 public class MainController {
 	@Autowired
 	AdminDao adminDao;
-	@Autowired	HelpDao helpDao;
+	@Autowired
+	HelpDao helpDao;
 	@Autowired
 	AdminFunction adminFunction;
 	@Autowired
 	RecoveryDao recoveryDao;
 	@Autowired
 	PasswordRecoveryFunction prf;
-@Autowired
+	@Autowired
 	MailFunction mf;
-	
+
 	@RequestMapping("/")
 	public String chooseRole(HttpSession session) {
 		String page = "choose";
@@ -49,10 +49,10 @@ public class MainController {
 		return page;
 
 	}
+
 	@RequestMapping("/logout")
-	public String logout(HttpSession session)
-	{
-		session.setAttribute("add",0);
+	public String logout(HttpSession session) {
+		session.setAttribute("add", 0);
 		session.setAttribute("id", null);
 		session.setAttribute("role", null);
 		session.setAttribute("addm", null);
@@ -60,10 +60,10 @@ public class MainController {
 		session.setAttribute("mediciness", null);
 		session.setAttribute("mid", null);
 		session.setAttribute("medici", null);
-		
+
 		return "choose";
 	}
-	
+
 	@RequestMapping("/log")
 	public String login(String role, @ModelAttribute("login") LoginBean login, HttpSession session, Model m) {
 		String page = "login";
@@ -128,8 +128,8 @@ public class MainController {
 	}
 
 	@RequestMapping("/main")
-	public String mainPage(@ModelAttribute("sb") SearchBean sb ,@Valid @ModelAttribute("login") LoginBean login, BindingResult br, HttpSession session,
-			Model model) {
+	public String mainPage(@ModelAttribute("sb") SearchBean sb, @Valid @ModelAttribute("login") LoginBean login,
+			BindingResult br, HttpSession session, Model model) {
 
 		String role = (String) session.getAttribute("role");
 
@@ -145,7 +145,7 @@ public class MainController {
 
 			AdminBean ub = adminDao.validateAdmin(login.getEmail().trim(),
 					adminFunction.encryption(login.getPassword().trim()));
-			if (ub == null || ub.getRole()==1) {
+			if (ub == null || ub.getRole() == 1) {
 				model.addAttribute("err", 1);
 //				System.out.println(login.getEmail()+" "+adminFunction.encryption(login.getPassword().trim()));
 				return "login";
@@ -154,12 +154,12 @@ public class MainController {
 			Optional<AdminBean> o = adminDao.findById(login.getEmail().trim());
 			if (o.isPresent())
 				session.setAttribute("id", o.get());
-session.setAttribute("uname", o.get().getFirstName()+" "+o.get().getLastName());
+			session.setAttribute("uname", o.get().getFirstName() + " " + o.get().getLastName());
 			page = "userHome";
 		} else {
 			AdminBean ab = adminDao.validateAdmin(login.getEmail().trim(),
 					adminFunction.encryption(login.getPassword().trim()));
-			if (ab == null || ab.getRole()==0) {
+			if (ab == null || ab.getRole() == 0) {
 				model.addAttribute("err", 1);
 //				System.out.println(1);
 				session.setAttribute("add", 0);
@@ -170,10 +170,13 @@ session.setAttribute("uname", o.get().getFirstName()+" "+o.get().getLastName());
 			if (o.isPresent())
 				session.setAttribute("id", o.get());
 
+			Integer not = adminFunction.anyNotification();
+			model.addAttribute("noti", not);
+			
 		}
-		session.setAttribute("add", 0);
+		session.setAttribute("add",0);
 		model.addAttribute("sb",new SearchBean());
-		
+
 		return page;
 
 	}// main
@@ -197,91 +200,74 @@ session.setAttribute("uname", o.get().getFirstName()+" "+o.get().getLastName());
 		return "login";
 	}
 
-	
-	
-	
 	@RequestMapping("/forgotpassword")
-	public String forgotpassword()
-	{
-	System.out.println("asddfg");
-	return "updatepassword";
+	public String forgotpassword() {
+		System.out.println("asddfg");
+		return "updatepassword";
 	}
-
 
 	@RequestMapping("/newpassword")
-	public String newpassword(String id,String question,String answer,Model mv,HttpSession session)
-	{
+	public String newpassword(String id, String question, String answer, Model mv, HttpSession session) {
 
-	System.out.println(id+" "+question+" "+answer);
+		System.out.println(id + " " + question + " " + answer);
 
-	RecoveryBean recoveryBean = prf.update(id, question, answer);
+		RecoveryBean recoveryBean = prf.update(id, question, answer);
 
+		if (recoveryBean == null) {
+			System.out.println("WRONG");
+			mv.addAttribute("result", "wrong");
+			return "updatepassword";
+		}
 
+		else {
+			session.setAttribute("username", recoveryBean.getDesgination());
 
-	if(recoveryBean==null)
-	{
-	System.out.println("WRONG");
-	mv.addAttribute("result","wrong" );
-	return "updatepassword";
-	}
+			System.out.println(recoveryBean.getDesgination());
 
-	else
-	{
-	session.setAttribute("username", recoveryBean.getDesgination());
-
-	System.out.println(recoveryBean.getDesgination());
-
-	return "passwordchanged";
-	}
-
+			return "passwordchanged";
+		}
 
 	}
 
 	@RequestMapping("/passwordchanged")
-	public String passwordchanged(String pass,String repass,Model m,HttpSession session,Model mo)
-	{
+	public String passwordchanged(String pass, String repass, Model m, HttpSession session, Model mo) {
 
-	System.out.println("qwertyuiop:"+pass+"  "+repass);
+		System.out.println("qwertyuiop:" + pass + "  " + repass);
 
-	if(!(pass.equals(repass)))
-	{
-	mo.addAttribute("result", "wrong");
-	return "passwordchanged";
-	}
+		if (!(pass.equals(repass))) {
+			mo.addAttribute("result", "wrong");
+			return "passwordchanged";
+		}
 
-	else
-	{
-	String s=(String)session.getAttribute("username");
-	System.out.println(s);
+		else {
+			String s = (String) session.getAttribute("username");
+			System.out.println(s);
 
+			prf.updatepassword(adminFunction.encryption(pass), s);
 
-	prf.updatepassword(adminFunction.encryption(pass),s );
+			mo.addAttribute("updatepass", "yes");
+			return "choose";
 
-	mo.addAttribute("updatepass", "yes");
-	return "choose";
+		}
 
 	}
-
-
-	}
-
 
 	@RequestMapping("/help")
 	public String help(@ModelAttribute("help") HelpBean help) {
-	System.out.println("helpper");
+		System.out.println("helpper");
 
-	return "help";
+		return "help";
 	}
 
 	@RequestMapping("/helpper")
-	public String helpper(@ModelAttribute("help") HelpBean help,Model m) {
-	System.out.println("success");
+	public String helpper(@ModelAttribute("help") HelpBean help, Model m) {
+		System.out.println("success");
 
-	helpDao.save(help);
-	System.out.println("success2");
-	m.addAttribute("help","success");
+		helpDao.save(help);
+		System.out.println("success2");
+		m.addAttribute("help", "success");
 
-	return "choose";
+		return "choose";
 	}
-	
+
 }

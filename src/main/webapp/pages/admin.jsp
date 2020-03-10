@@ -17,6 +17,32 @@
 	max-width: 100%;
 	display: block;
 }
+
+.notification {
+  background-color:black;
+  color: white;
+  text-decoration: none;
+  padding: 10px 18px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+ 	width: 150px;
+ 	font-size: 15px;
+}
+
+.notification:hover {
+  background: green;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background-color: RED;
+  color: white;
+}
 </style>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -52,13 +78,23 @@
 		</button>
 		<img src="logo2.png" alt="logo" style="height: 5%; width: 5%" /> <a
 			class="navbar-brand text-light" href="/adminhomepage">GetMed</a>
+		
+	
 		<div class="collapse navbar-collapse" id="navigation-bar">
 			<ul class="navbar-nav ml-auto ">
+				<li >
+				<c:if test="${ notic!=1}">
+					<a href="/notification" class="nav-link  btn btn-outline-success notification">
+  <span>NOTIFICATION</span>
+  <span class="badge">${noti}</span>
+</a></c:if>
+<c:if test="${notic==1}">
+					<a href="/notification" class="nav-link  btn btn-outline-success notification">
+  <span>NOTIFICATION</span>
+ </a></c:if>
+				</li>&nbsp;&nbsp;
 				
-				<li class="nav-item"><a class="nav-link text-light"
-					href="#work">CONTACT</a></li>
-				<li class="nav-item"><a class="nav-link text-light" href="#why">HELP</a></li>
-			<li class="nav-item"><a class="nav-link text-light" href="/logout">LOGOUT</a></li>
+			<li class="nav-item"><a class="nav-link  btn btn-outline-danger btn-md" href="/logout">LOGOUT</a></li>
 			
 			</ul>
 		</div>

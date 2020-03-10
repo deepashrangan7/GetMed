@@ -22,6 +22,17 @@ public class MedicineOrdered {
 		this.moid = moid;
 	}
 
+	public MedicineOrdered() {
+		super();
+	}
+
+	public MedicineOrdered(Integer oid, Integer mid, Integer quantity) {
+		super();
+		this.oid = oid;
+		this.mid = mid;
+		this.quantity = quantity;
+	}
+
 	public Integer getOid() {
 		return oid;
 	}

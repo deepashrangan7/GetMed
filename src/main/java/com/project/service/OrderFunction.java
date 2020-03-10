@@ -44,7 +44,7 @@ public class OrderFunction {
 				flag = true;
 			}
 
-			Thread.sleep(300);
+//			Thread.sleep(300);
 		} catch (Exception e) {
 			System.out.println("multiple tried");
 		}

@@ -28,6 +28,19 @@ public class OrderBean {
 	@Column(name="uid")
 	private String userId;
 	
+	public OrderBean() {
+		super();
+	}
+
+	public OrderBean( String userId, Double amount, String status) {
+		super();
+	
+		this.userId = userId;
+		this.amount = amount;
+		this.status = status;
+	
+	}
+
 	public Date getOrderDate() {
 		return orderDate;
 	}

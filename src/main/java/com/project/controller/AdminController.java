@@ -158,6 +158,7 @@ public class AdminController {
 		session.setAttribute("addm", 0);
 		Integer not = adminFunction.anyNotification();
 		m.addAttribute("noti", not);
+		session.setAttribute("notic",0);
 		return "admin";
 	}
 
@@ -214,7 +215,13 @@ public class AdminController {
 	@RequestMapping("/notification")
 	public String notifypage(HttpSession session,Model m) {
 		String page="notificationpage";
+		
+		List<MedicineBean> obj=adminFunction.getnotificaton();
 		session.setAttribute("notic", 1);
+		Integer not = adminFunction.anyNotification();
+		m.addAttribute("noti", not);
+		
+		m.addAttribute("nott",obj);
 		return page;
 	}
 	

@@ -34,7 +34,7 @@
 			<span class="navbar-toggler-icon text-light">&#9776;</span>
 		</button>
 		<img src="logo2.png" alt="logo" style="height:5%;width: 5%"/>
-		<a class="navbar-brand text-light" href="/adhome" >GetMed</a>
+		<a class="navbar-brand text-light" href="/adminhomepage" >GetMed</a>
 		<div class="collapse navbar-collapse" id="navigation-bar">
 			<ul class="navbar-nav ml-auto " >
 				<li class="nav-item "><a class="nav-link text-light" href="/adminhomepage">HOME</a></li>

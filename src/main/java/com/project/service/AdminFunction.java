@@ -55,5 +55,17 @@ private	MedicineDao md;
 		return count;
 	}
 	
+	public List<MedicineBean> getnotificaton(){
+		
+		List<MedicineBean> obj=new ArrayList<>();
+		List<MedicineBean> mb=md.findAll();
+		
+		for(MedicineBean m:mb) {
+			if(m.getStock()==0) {
+				obj.add(m);
+			}
+		}System.out.println(obj);
+		return obj;
+	}
 	
 }

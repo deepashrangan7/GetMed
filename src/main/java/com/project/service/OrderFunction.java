@@ -56,6 +56,9 @@ public class OrderFunction {
 //		try {
 
 		List<OrderBean> ob1 = od.findOid();
+		if(ob1==null||ob1.size()==0)
+			oid=1;
+		else
 		oid = ob1.get(0).getOrderId() + 1;
 		List<MedicineOrdered> morder = new ArrayList<>();
 		MedicineBean mbb = null;

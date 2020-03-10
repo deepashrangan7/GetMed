@@ -172,7 +172,7 @@ public class MainController {
 
 			Integer not = adminFunction.anyNotification();
 			model.addAttribute("noti", not);
-			
+			session.setAttribute("notic",0);
 		}
 		session.setAttribute("add",0);
 		model.addAttribute("sb",new SearchBean());

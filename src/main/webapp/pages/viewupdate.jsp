@@ -69,7 +69,7 @@
       <th ><c:out value="${med.name}"/></th>
       <td><c:out value="${med.brand}"/></td>
       <td><c:out value="${med.stock}"/></td>
-      l<td><fmt:formatDate value="${med.expiryDate}" pattern="dd-MM-yyyy"/>
+      <td><fmt:formatDate value="${med.expiryDate}" pattern="dd-MM-yyyy"/>
   </td>
       <td><a href="updatemedicine?mid=${med.mid}" class="btn btn-outline-secondary btn-sm">Update Stock</a></td>
     </tr>

@@ -83,18 +83,18 @@
 		<div class="collapse navbar-collapse" id="navigation-bar">
 			<ul class="navbar-nav ml-auto ">
 				<li >
-				<c:if test="${ notic!=1}">
-					<a href="/notification" class="nav-link  btn btn-outline-success notification">
+				<c:if test="${ notic==0 && noti!=0}">
+					<a href="/notification" class="nav-link  text-light notification">
   <span>NOTIFICATION</span>
   <span class="badge">${noti}</span>
 </a></c:if>
-<c:if test="${notic==1}">
-					<a href="/notification" class="nav-link  btn btn-outline-success notification">
+<c:if test="${notic==0 && noti==0}">
+					<a href="/notification" class="nav-link  text-light notification">
   <span>NOTIFICATION</span>
  </a></c:if>
 				</li>&nbsp;&nbsp;
 				
-			<li class="nav-item"><a class="nav-link  btn btn-outline-danger btn-md" href="/logout">LOGOUT</a></li>
+			<li class="nav-item"><a class="nav-link  text-light" href="/logout">LOGOUT</a></li>
 			
 			</ul>
 		</div>

@@ -36,8 +36,7 @@ public class MedicineController {
 	public String errorHandline() {
 		return "errorpage";
 	}
-	
-	
+
 	@RequestMapping("/orderdone")
 	public synchronized String ordermedicine(HttpSession session, Model m) {
 		if (session.getAttribute("id") == null)
@@ -46,6 +45,9 @@ public class MedicineController {
 		List<MedicineOrdered> obj = (List<MedicineOrdered>) session.getAttribute("paired");
 		String stk = "some stocks sold out";
 		int i = 0;
+		if (cart.size() == 0) {
+
+		}
 		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
 			Integer mid1 = entry.getKey();
 			synchronized (this) {
@@ -73,15 +75,14 @@ public class MedicineController {
 			Double total = (Double) session.getAttribute("total");
 			AdminBean ab = (AdminBean) session.getAttribute("id");
 			String uid = ab.getEmailId();
-			//Integer oid = of.placeorder(cart, total, uid);
-			Integer oid=of2.setOrder(obj,uid,total);
+			// Integer oid = of.placeorder(cart, total, uid);
+			Integer oid = of2.setOrder(obj, uid, total);
 //			
-			if(oid==-1)
-			{
-				
+			if (oid == -1) {
+
 				return "viewcart";
 			}
-			
+
 			System.out.println("order placed " + uid + " " + total);
 			m.addAttribute("oids", oid);
 			session.setAttribute("nostock", "");
@@ -90,17 +91,20 @@ public class MedicineController {
 			//// write
 		}
 		session.setAttribute("paired", null);
+		
 		return page;
 	}
 
 	@RequestMapping("/pay")
-	public  String payment(HttpSession session) {
+	public String payment(HttpSession session, Model model) {
 		if (session.getAttribute("id") == null)
 			return "choose";
 		String stk = "some stocks sold out";
-		int i = 0;try {
-		Thread.sleep(2000);}catch (Exception e) {
-			// TODO: handle exception
+		Integer si = (Integer) session.getAttribute("cartsize");
+		int i = 0;
+		if (cart.size() == 0 || cart.size() < si) {
+			model.addAttribute("errorcart", "some items sold out");
+			return "viewcart";
 		}
 		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
 			Integer mid1 = entry.getKey();
@@ -123,7 +127,7 @@ public class MedicineController {
 			session.setAttribute("nostock", stk);
 			return "viewcart";
 		}
-		
+
 		List<MedicineOrdered> mo = new ArrayList<>();
 		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
 			Integer mid1 = entry.getKey();
@@ -221,6 +225,7 @@ public class MedicineController {
 		session.setAttribute("listofmedicine", mb);
 		session.setAttribute("total", prices);
 		session.setAttribute("nostock", null);
+		session.setAttribute("cartsize", cart.size());
 		return "viewcart";
 	}
 

@@ -113,7 +113,8 @@
 		<c:when test="${fn:length(cart) eq 0}">
 			<h2 style="text-align: center">No Medicines In cart</h2>
 			<h2 style="text-align: center"><a href="/allmed" class="btn btn-outline-secondary btn-lg">Click Here to Buy Medicine</a></h2>
-			
+		
+<h5 style="color: red; text-align: center">${errorcart}</h5>	
 		</c:when>
 		<c:otherwise>
 <%int x=0; %>
@@ -123,6 +124,8 @@
 <c:if test="${nostock!=null}">
 <h5 style="color: red; text-align: center">${nostock}</h5>
 </c:if>
+<h5 style="color: red; text-align: center">${errorcart}</h5>
+
 			<br />
 			<table class="table table-hover" style="padding-top: 5em;">
 

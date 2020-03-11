@@ -30,7 +30,7 @@ public class OrderFunction {
 	@Autowired
 	private MailFunction mf;
 
-	public synchronized boolean stockAvailable(Integer mid, Integer needed) {
+	public  boolean stockAvailable(Integer mid, Integer needed) {
 		boolean flag = false;
 
 		MedicineBean mb = null;

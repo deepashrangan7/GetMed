@@ -128,6 +128,7 @@ else
 <p style="font-size: 24px;text-align: center;font-weight: bold;"><%="Welcome "+name+" ("+role+")"%>
 </p>
 	<br />
+	<p style="color:green;text-align: center;">${pdf}</p>
 	<br />
 <p style="text-align: center;color:green;"><%=msg%></p>
 <br/>

@@ -75,7 +75,14 @@ public class MedicineController {
 			String uid = ab.getEmailId();
 			//Integer oid = of.placeorder(cart, total, uid);
 			Integer oid=of2.setOrder(obj,uid,total);
-//			System.out.println("order placed " + uid + " " + total);
+//			
+			if(oid==-1)
+			{
+				
+				return "viewcart";
+			}
+			
+			System.out.println("order placed " + uid + " " + total);
 			m.addAttribute("oids", oid);
 			session.setAttribute("nostock", "");
 			cart.clear();
@@ -87,11 +94,14 @@ public class MedicineController {
 	}
 
 	@RequestMapping("/pay")
-	public synchronized String payment(HttpSession session) {
+	public  String payment(HttpSession session) {
 		if (session.getAttribute("id") == null)
 			return "choose";
 		String stk = "some stocks sold out";
-		int i = 0;
+		int i = 0;try {
+		Thread.sleep(2000);}catch (Exception e) {
+			// TODO: handle exception
+		}
 		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
 			Integer mid1 = entry.getKey();
 			if (!(of.stockAvailable(mid1, cart.get(mid1)))) {
@@ -113,6 +123,7 @@ public class MedicineController {
 			session.setAttribute("nostock", stk);
 			return "viewcart";
 		}
+		
 		List<MedicineOrdered> mo = new ArrayList<>();
 		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
 			Integer mid1 = entry.getKey();

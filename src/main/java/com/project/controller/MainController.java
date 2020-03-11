@@ -24,6 +24,7 @@ import com.project.service.AdminDao;
 import com.project.service.AdminFunction;
 import com.project.service.HelpDao;
 import com.project.service.PasswordRecoveryFunction;
+import com.project.service.Pdf_Function;
 import com.project.service.RecoveryDao;
 
 @Controller
@@ -40,7 +41,8 @@ public class MainController {
 	PasswordRecoveryFunction prf;
 	@Autowired
 	MailFunction mf;
-
+	@Autowired
+	Pdf_Function pdf;
 	@RequestMapping("/")
 	public String chooseRole(HttpSession session) {
 		String page = "choose";
@@ -270,4 +272,22 @@ public class MainController {
 		return "redirect:uhome";
 	}
 
+	@RequestMapping("/pdf")
+	public String pdf()
+	{
+	System.out.println("asddfg");
+
+
+	return "choosepdf";
+	}
+
+	@RequestMapping("/generatepdf")
+	public String generatepdf(String typepdf,Model m)
+	{
+	pdf.pdf(typepdf);
+	m.addAttribute("pdf","YOUR REPORT IS GENERATED SUCCESSFULLY.");
+
+	return "admin";
+	}
+	
 }

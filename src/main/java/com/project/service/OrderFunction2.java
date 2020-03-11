@@ -39,16 +39,20 @@ public class OrderFunction2 {
 			m.setOid(oid);
 			Optional<MedicineBean> o = md.findById(m.getMid());
 			MedicineBean mb = o.get();
+			synchronized (this) {
+			if(mb.getStock()>=m.getQuantity()) {
+				
 			mb.setStock(mb.getStock() - m.getQuantity());
 			mb.setSales(mb.getSales() + m.getQuantity());
-			synchronized (this) {
 				
 			
 			md.save(mb);
 			mod.save(m);
 		}
-			
-		}
+			else {
+				return -1;
+			}
+			}}
 
 		return oid;
 	}

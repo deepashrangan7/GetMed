@@ -14,4 +14,8 @@ public interface MedicineOrderDao extends JpaRepository<MedicineOrdered, Integer
 	
 	@Query("select s from MedicineOrdered s where s.oid=:oid")
 	public List<MedicineOrdered> getListOfOrder(Integer oid);
+
+	@Query("select s from MedicineOrdered s where s.mid=:mid")
+	public MedicineOrdered getMo(Integer mid);
+
 }

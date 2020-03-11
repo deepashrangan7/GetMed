@@ -55,7 +55,9 @@ public interface MedicineDao extends JpaRepository<MedicineBean, Integer>{
 	@Query("select s from MedicineBean s order by s.city desc")
 	public List<MedicineBean> findCityDesc();
 
-
+	@Query("select s from MedicineBean s where s.mid=:mid")
+	public MedicineBean findMed(Integer mid);
+	
 //
 //	@Query("select s from MedicineBean s where s.name=:mb.name order by s.city desc")
 //	public List<MedicineBean> findCityDesc(List<MedicineBean> mb);

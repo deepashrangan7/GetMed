@@ -11,6 +11,7 @@ import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itextpdf.text.log.SysoCounter;
 import com.project.MailFunction;
 import com.project.model.AdminBean;
 import com.project.model.MedicineBean;
@@ -29,30 +30,25 @@ public class OrderFunction {
 	private MedicineOrderDao md;
 	@Autowired
 	private MailFunction mf;
-
+	
 	public  boolean stockAvailable(Integer mid, Integer needed) {
 		boolean flag = false;
 
 		MedicineBean mb = null;
 
-		Optional<MedicineBean> o = medicineDao.findById(mid);
-		if (o.isPresent())
-			mb = o.get();
-		try {
+		mb = medicineDao.findMed(mid);
 
-			if (mb.getStock() - needed >= 0) {
-				flag = true;
+		System.out.println("stock avialble "+mb.getStock()+" neded "+needed);
+			if (mb.getStock() - needed >= 0)
+			{	flag = true;
+			System.out.println("Inside if stock avialble "+mb.getStock()+" neded "+needed);
+
 			}
-
-//			Thread.sleep(300);
-		} catch (Exception e) {
-			System.out.println("multiple tried");
-		}
-
 		return flag;
 
 	}// method1
 
+	
 	
 	public synchronized Integer placeorder(Map<Integer, Integer> cart, Double total, String uid) {
 		Integer oid = 0;
@@ -66,23 +62,22 @@ public class OrderFunction {
 				oid = ob1.get(0).getOrderId() + 1;
 			List<MedicineOrdered> morder = new ArrayList<>();
 			MedicineBean mbb = null;
-			
 
-				for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
-					Integer mid1 = entry.getKey();
-					morder.add(new MedicineOrdered());
-					morder.get(morder.size() - 1).setMid(mid1);
-					morder.get(morder.size() - 1).setQuantity(cart.get(mid1));
-					morder.get(morder.size() - 1).setOid(oid);
-					md.save(morder.get(morder.size() - 1));
+			for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
+				Integer mid1 = entry.getKey();
+				morder.add(new MedicineOrdered());
+				morder.get(morder.size() - 1).setMid(mid1);
+				morder.get(morder.size() - 1).setQuantity(cart.get(mid1));
+				morder.get(morder.size() - 1).setOid(oid);
+				md.save(morder.get(morder.size() - 1));
 
-					Optional<MedicineBean> o = medicineDao.findById(mid1);
-					if (o.isPresent()) {
-			
-						mbb = o.get();
-						mbb.setStock(mbb.getStock() - cart.get(mid1));
-						mbb.setSales(mbb.getSales() + cart.get(mid1));
-						synchronized (this) {
+				Optional<MedicineBean> o = medicineDao.findById(mid1);
+				if (o.isPresent()) {
+
+					mbb = o.get();
+					mbb.setStock(mbb.getStock() - cart.get(mid1));
+					mbb.setSales(mbb.getSales() + cart.get(mid1));
+					synchronized (this) {
 						medicineDao.save(mbb);
 					}
 				} // for
@@ -90,10 +85,10 @@ public class OrderFunction {
 			}
 			OrderBean ob = new OrderBean();
 
-				ob.setAmount(total);
-				ob.setStatus("inprogress");
-				ob.setUserId(uid);
-				synchronized (this) {
+			ob.setAmount(total);
+			ob.setStatus("inprogress");
+			ob.setUserId(uid);
+			synchronized (this) {
 				od.save(ob);
 
 			}

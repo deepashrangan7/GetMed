@@ -13,11 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itextpdf.text.log.SysoCounter;
 import com.project.model.AdminBean;
 import com.project.model.MedicineBean;
 import com.project.model.MedicineOrdered;
 import com.project.model.SearchBean;
 import com.project.service.MedicineDao;
+import com.project.service.MedicineOrderDao;
 import com.project.service.OrderFunction;
 import com.project.service.OrderFunction2;
 
@@ -31,13 +33,14 @@ public class MedicineController {
 	private Map<Integer, Integer> cart;
 	@Autowired
 	private OrderFunction2 of2;
+	@Autowired
+	private MedicineOrderDao mod;
 
 	@ExceptionHandler(Exception.class)
 	public String errorHandline() {
 		return "errorpage";
 	}
-	
-	
+
 	@RequestMapping("/orderdone")
 	public synchronized String ordermedicine(HttpSession session, Model m) {
 		if (session.getAttribute("id") == null)
@@ -73,15 +76,14 @@ public class MedicineController {
 			Double total = (Double) session.getAttribute("total");
 			AdminBean ab = (AdminBean) session.getAttribute("id");
 			String uid = ab.getEmailId();
-			//Integer oid = of.placeorder(cart, total, uid);
-			Integer oid=of2.setOrder(obj,uid,total);
+//			Integer oid = of.placeorder(cart, total, uid);
+			Integer oid = of2.setOrder(obj, uid, total);
 //			
-			if(oid==-1)
-			{
-				
+			if (oid == -1) {
+
 				return "viewcart";
 			}
-			
+
 			System.out.println("order placed " + uid + " " + total);
 			m.addAttribute("oids", oid);
 			session.setAttribute("nostock", "");
@@ -90,50 +92,78 @@ public class MedicineController {
 			//// write
 		}
 		session.setAttribute("paired", null);
+		System.out.println("full process done");
 		return page;
 	}
 
 	@RequestMapping("/pay")
-	public  String payment(HttpSession session) {
+	public String payment(HttpSession session) {
 		if (session.getAttribute("id") == null)
 			return "choose";
-		String stk = "some stocks sold out";
-		int i = 0;try {
-		Thread.sleep(2000);}catch (Exception e) {
-			// TODO: handle exception
-		}
-		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
-			Integer mid1 = entry.getKey();
-			if (!(of.stockAvailable(mid1, cart.get(mid1)))) {
-				// System.out.println(mid1 + " srock no");
-				i += 1;
 
-				Optional<MedicineBean> o = md.findById(mid1);
-				if (o.isPresent()) {
-					MedicineBean mbb = o.get();
-
-					stk += "\n only " + mbb.getStock() + " left in" + mbb.getName() + " ";
-
-				} // o.present
-			} // !
-
-		} // for
-//		System.out.println(stk);
-		if (i != 0) {
+		List<MedicineOrdered> morder = new ArrayList<>();
+		String stk = "";
+		System.out.println(cart);
+		if(cart.size()==0) {
+System.out.println("inside size");
+			stk = "Some Stock Sold Out";
 			session.setAttribute("nostock", stk);
 			return "viewcart";
 		}
-		
-		List<MedicineOrdered> mo = new ArrayList<>();
 		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
+			System.out.println("for ");
 			Integer mid1 = entry.getKey();
-			mo.add(new MedicineOrdered());
-			mo.get(mo.size() - 1).setMid(mid1);
-			mo.get(mo.size() - 1).setQuantity(cart.get(mid1));
+			if (!(of.stockAvailable(mid1, cart.get(mid1)) )) {
 
-		}
-		session.setAttribute("paired", mo);
+				stk = "Some Stock Sold Out";
+				session.setAttribute("nostock", stk);
+				return "viewcart";
+
+			}
+			
+			morder.add(new MedicineOrdered(mid1, cart.get(mid1)));
+		} // for
+		
+		session.setAttribute("paired", morder);
+		session.setAttribute("nostock", "");
+		System.out.println("new order came ");
 		return "payment";
+
+		// String stk = "some stocks sold out";
+//		int i = 0;
+//		
+//		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
+//			Integer mid1 = entry.getKey();
+//			
+//			if (!(of.stockAvailable(mid1, cart.get(mid1)))) {
+//				i += 1;
+//
+//				Optional<MedicineBean> o = md.findById(mid1);
+//				if (o.isPresent()) {
+//					MedicineBean mbb = o.get();
+//
+//					stk += "\n only " + mbb.getStock() + " left in" + mbb.getName() + " ";
+//
+//				} // o.present
+//			} // !
+//
+//		} // for
+////		System.out.println(stk);
+//		if (i != 0) {
+//			session.setAttribute("nostock", stk);
+//			return "viewcart";
+//		}
+//		
+//		List<MedicineOrdered> mo = new ArrayList<>();
+//		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
+//			Integer mid1 = entry.getKey();
+//			mo.add(new MedicineOrdered());
+//			mo.get(mo.size() - 1).setMid(mid1);
+//			mo.get(mo.size() - 1).setQuantity(cart.get(mid1));
+//
+//		}
+//		session.setAttribute("paired", mo);
+
 	}// method
 
 	@RequestMapping("/addtocart")
@@ -157,7 +187,7 @@ public class MedicineController {
 		if (session.getAttribute("id") == null)
 			return "choose";
 		cart.remove(mid);
-		System.out.println("opt " + opt + " remove");
+
 		session.setAttribute("cart", cart);
 		m.addAttribute("sb", new SearchBean());
 		if (opt == 1) {

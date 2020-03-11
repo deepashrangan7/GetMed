@@ -22,8 +22,8 @@ public class OrderFunction2 {
 	 MedicineDao md;
 	@Autowired
 	 MedicineOrderDao mod;
-	@Transactional
-	public synchronized  Integer setOrder(List<MedicineOrdered> mo, String uid, Double total) {
+
+	public   Integer setOrder(List<MedicineOrdered> mo, String uid, Double total) {
 		List<OrderBean> ob1 = od.findOid();
 		Integer oid = 1;
 		if (ob1 == null || ob1.size() == 0)
@@ -39,21 +39,22 @@ public class OrderFunction2 {
 			m.setOid(oid);
 			Optional<MedicineBean> o = md.findById(m.getMid());
 			MedicineBean mb = o.get();
-			synchronized (this) {
 			if(mb.getStock()>=m.getQuantity()) {
-				
+				synchronized (this) {	
 			mb.setStock(mb.getStock() - m.getQuantity());
 			mb.setSales(mb.getSales() + m.getQuantity());
 				
 			
+			
 			md.save(mb);
 			mod.save(m);
-		}
+		
+				}}
 			else {
 				return -1;
 			}
-			}}
-
+			}
+System.out.println("oid  done "+oid );
 		return oid;
 	}
 }

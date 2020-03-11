@@ -141,11 +141,11 @@
                             <form class="form" role="form" autocomplete="off" action="/orderdone">
                                 <div class="form-group">
                                     <label for="cc_name">Card Holder's Name</label>
-                                    <input type="text" class="form-control" id="cc_name" pattern="\w+ \w+.*" title="First and last name" required="required">
+                                    <input type="text" class="form-control" id="cc_name"  placeholder="ENTER NAME OF CARD HOLDER" required="required">
                                 </div>
                                 <div class="form-group">
                                     <label>Card Number</label>
-                                    <input type="text" class="form-control" autocomplete="off" maxlength="20" pattern="\d{16}" title="Credit card number" required="">
+                                    <input type="text" class="form-control" autocomplete="off" maxlength="20" pattern="\d{16}" title="Credit card number" required="true" placeholder="Enter 16  DiGIT CARD NUMBER">
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-12">Card Exp. Date</label>
@@ -179,7 +179,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" autocomplete="off" maxlength="3" pattern="\d{3}" title="Three digits at back of your card" required="" placeholder="CVC">
+                                        <input type="text" class="form-control" autocomplete="off" maxlength="3" pattern="\d{3}" placeholder="CVV"title="Three digits at back of your card" required="" placeholder="CVC">
                                     </div>
                                 </div>
                                 <div class="row">

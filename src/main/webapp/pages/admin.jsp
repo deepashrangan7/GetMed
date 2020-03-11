@@ -151,5 +151,8 @@ else
 <br/>
 	<p style="text-align: center;"><a href="/viewordersadmin" class="btn btn-outline-dark btn-lg">View Orders</a></p>
 
+<br/>
+	<p style="text-align: center;"><a href="/pdf" class="btn btn-outline-dark btn-lg">Generate Report</a></p>
+
 </body>
 </html>

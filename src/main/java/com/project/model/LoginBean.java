@@ -1,6 +1,8 @@
 package com.project.model;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.stereotype.Component;
 
@@ -9,7 +11,8 @@ public class LoginBean {
 	
 	@NotBlank(message = "email cant Be empty")
 	private String email;
-	@NotBlank(message = "Password must be minimum of length 8")
+	
+	@Min(value=8,message = "Password must be minimum of length 8")
 	private String password;
 	
 	public String getEmail() {

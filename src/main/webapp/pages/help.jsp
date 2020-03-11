@@ -82,31 +82,31 @@ box-shadow:none;
 
 <div class="col-md-9">
 <div class="contact-form">
-<f:form id="form" action="helpper" method="post" modelAttribute="help" > 
+<form id="form" action="helpper" method="post" > 
 <div class="form-group">
  <label class="control-label col-sm-2" for="fname">First Name:</label>
  <div class="col-sm-10">          
-<f:input type="text" class="form-control" id="name" placeholder="Enter Your Name" path="name" name="name"/>
+<input type="text" class="form-control" id="name" placeholder="Enter Your Name" required="required" name="name"/>
  </div>
 </div>
 
 <div class="form-group">
  <label class="control-label col-sm-2" for="email">Email:</label>
  <div class="col-sm-10">
-<f:input type="email" class="form-control" id="email" placeholder="Enter email" path="uid" name="email"/>
+<input type="email" class="form-control" id="email" placeholder="Enter email" required="required" name="uid"/>
  </div>
 </div>
 
 <div class="form-group">
  <label class="control-label col-sm-2" for="lname">Issue:</label>
  <div class="col-sm-10">          
-<input type="text" class="form-control" id="issue" placeholder="Enter The Issue" path="issue" name="issue" >
+<input type="text" class="form-control" id="issue" placeholder="Enter The Issue" required="required"  name="issue" >
  </div>
 </div>
 <div class="form-group">
  <label class="control-label col-sm-2" for="comment">Description:</label>
  <div class="col-sm-10">
-<f:textarea class="form-control" rows="5" id="description" path="description"></f:textarea>
+<textarea class="form-control" rows="5" id="description" name="description" required="required"></textarea>
  </div>
 </div>
 <div class="form-group">        
@@ -116,7 +116,7 @@ box-shadow:none;
 </div>
 
 <div style="color: red;text-align: left;padding-left: 0%"> *For more queries don't hesitate to contact 8888888888.</div>
-</f:form>
+</form>
 </div>
 
 </div>

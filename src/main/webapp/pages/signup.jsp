@@ -127,8 +127,8 @@ alert("hii")
                     
                     
                    
-<a href="/sign">Clear</a>
-
+<p style="text-align:right;"><a href="/sign" class="btn btn-irenic float-right">Clear</a>
+</p>
 
                      <div class="login-pending">
                         <div class=spinner>

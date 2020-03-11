@@ -89,6 +89,9 @@
         <li class="nav-item active">
           <a class="nav-link" href="/uhome" style="color: white;"><span class="sr-only">(current)</span></a>
         </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/help" style="color: white;">Help</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;
         <li> <p>${uname}</p></li>
       </ul>
       <f:form class="form-inline my-2 my-lg-0" action="viewmedicine" method="post" modelAttribute="sb">
@@ -124,11 +127,11 @@
  <br/><br/>
  <div class="container" style="text-align: center">
  
- <a href="/allmed" class="btn btn-outline-info btn-lg">view all medicine</a>
-&nbsp;<a href="#" class="btn btn-outline-info btn-lg">Order Medicine</a>
+ <a href="/allmed" class="btn btn-outline-info btn-lg">view available medicine</a><br/><br/><br/>
+&nbsp;<a href="#" class="btn btn-outline-info btn-lg">Order Medicine</a><br/><br/><br/>
  &nbsp;
- <a href="/orderhistory" class="btn btn-outline-info btn-lg">Order History</a>
- &nbsp;<a href="/viewcart" class="btn btn-outline-info btn-lg">view Cart</a>
+ <a href="/orderhistory" class="btn btn-outline-info btn-lg">Order History</a><br/><br/><br/>
+ &nbsp;<a href="/viewcart" class="btn btn-outline-info btn-lg">view Cart</a><br/><br/><br/>
  
 </div>
 

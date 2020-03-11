@@ -112,9 +112,7 @@ if(add==1)
       <p style="color:green;"><%=msgs%></p><br/>
       <p style="text-align: center;font-size: large;color:black;"><a href="/forgotpassword">forgot Password?</a></p>
    <br/>
-    <p style="text-align: center;font-size: large;color:black;"><a href="/help">Any Problem in Login ? Click Here</a></p>
-    
-      </div>
+     </div>
     </div>
       
      

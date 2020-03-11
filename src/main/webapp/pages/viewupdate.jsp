@@ -37,9 +37,7 @@
 		<div class="collapse navbar-collapse" id="navigation-bar">
 			<ul class="navbar-nav ml-auto " >
 				<li class="nav-item "><a class="nav-link text-light" href="/adminhomepage">HOME</a></li>
-				<li class="nav-item"><a class="nav-link text-light" href="#work">CONTACT</a></li>
-				<li class="nav-item"><a class="nav-link text-light" href="#why">HELP</a></li>
-           <li class="nav-item"><a class="nav-link text-light" href="/logout">Logout</a></li>
+				<li class="nav-item"><a class="nav-link text-light" href="/logout">Logout</a></li>
 			
                 </ul>
 		</div>

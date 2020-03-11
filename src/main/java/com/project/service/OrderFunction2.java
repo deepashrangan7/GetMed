@@ -3,6 +3,8 @@ package com.project.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ public class OrderFunction2 {
 	 MedicineDao md;
 	@Autowired
 	 MedicineOrderDao mod;
+	@Transactional
 	public synchronized  Integer setOrder(List<MedicineOrdered> mo, String uid, Double total) {
 		List<OrderBean> ob1 = od.findOid();
 		Integer oid = 1;

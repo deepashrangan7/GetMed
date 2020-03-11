@@ -53,7 +53,7 @@ public class OrderFunction {
 
 	}// method1
 
-	@Transactional
+	
 	public synchronized Integer placeorder(Map<Integer, Integer> cart, Double total, String uid) {
 		Integer oid = 0;
 

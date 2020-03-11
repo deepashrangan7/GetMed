@@ -56,9 +56,9 @@ $btn.addEventListener("click", signIn);
      
           <br /><br />
           
-          <a class="btn btn-dark btn-lg" style="width: 80%;" href="/log?role=ad" role="button">Admin</a>
+          <a class="btn btn-dark btn-lg" style="width: 80%;" href="/log?role=ad" role="button">&nbsp;Admin&nbsp;</a>
           <br /><br /><br />
-          <a class="btn btn-dark btn-lg" style="width: 80%;" href="/log?role=us" role="button">&nbsp;User&nbsp;</a>
+          <a class="btn btn-dark btn-lg" style="width: 80%;" href="/log?role=us" role="button">Customer</a>
           <br /><br />
           
           

@@ -172,10 +172,10 @@ public class MainController {
 
 			Integer not = adminFunction.anyNotification();
 			model.addAttribute("noti", not);
-			session.setAttribute("notic",0);
+			session.setAttribute("notic", 0);
 		}
-		session.setAttribute("add",0);
-		model.addAttribute("sb",new SearchBean());
+		session.setAttribute("add", 0);
+		model.addAttribute("sb", new SearchBean());
 
 		return page;
 
@@ -260,14 +260,14 @@ public class MainController {
 	}
 
 	@RequestMapping("/helpper")
-	public String helpper(@ModelAttribute("help") HelpBean help, Model m) {
+	public String helpper(HelpBean help, Model m) {
 		System.out.println("success");
 
 		helpDao.save(help);
-		System.out.println("success2");
+//		System.out.println("success2");
 		m.addAttribute("help", "success");
-
-		return "choose";
+		mf.sendHelp(help);
+		return "redirect:uhome";
 	}
 
 }

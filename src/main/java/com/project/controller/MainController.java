@@ -1,5 +1,7 @@
 package com.project.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -43,6 +45,7 @@ public class MainController {
 	MailFunction mf;
 	@Autowired
 	Pdf_Function pdf;
+
 	@RequestMapping("/")
 	public String chooseRole(HttpSession session) {
 		String page = "choose";
@@ -134,7 +137,8 @@ public class MainController {
 			BindingResult br, HttpSession session, Model model) {
 
 		String role = (String) session.getAttribute("role");
-
+		 Map<Integer, Integer> cart=new HashMap<Integer, Integer>();
+		session.setAttribute("cart", cart);
 		String page = "admin";
 		session.setAttribute("addm", 0);
 		if (br.hasErrors()) {
@@ -288,6 +292,36 @@ public class MainController {
 	m.addAttribute("pdf","YOUR REPORT IS GENERATED SUCCESSFULLY.");
 
 	return "admin";
+	}
+	
+	
+	@RequestMapping("/forgotusername")
+	public String forgotusername()
+	{
+	System.out.println("asddfg");
+	return "showuserid";
+	}
+
+	@RequestMapping("/showuserid")
+	public String showuserid(String answer1,String answer2,String answer3,Model m)
+	{
+	RecoveryBean rb = recoveryDao.Validateusername(answer1, answer2, answer3);
+
+	if(rb==null)
+	{
+	m.addAttribute("result", "wrong");
+	return "showuserid";
+	}
+	else
+	{
+	m.addAttribute("result", "correct");
+	m.addAttribute("mid",rb.getDesgination());
+	System.out.println(rb.getDesgination());
+	return "choose";
+	}
+
+
+
 	}
 	
 }

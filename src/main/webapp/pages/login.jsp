@@ -111,6 +111,7 @@ if(add==1)
       <br/>
       <p style="color:green;"><%=msgs%></p><br/>
       <p style="text-align: center;font-size: large;color:black;"><a href="/forgotpassword">forgot Password?</a></p>
+   <br/><p style="text-align: center;font-size: large;color:black;"><a href="/forgotusername">forgot Username?</a></p>
    <br/>
      </div>
     </div>

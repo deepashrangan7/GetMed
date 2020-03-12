@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -27,8 +28,8 @@ public class MedicineController {
 	private OrderFunction of;
 	@Autowired
 	private MedicineDao md;
-	@Autowired
-	private Map<Integer, Integer> cart;
+//	@Autowired
+//	private Map<Integer, Integer> cart;
 	@Autowired
 	private OrderFunction2 of2;
 
@@ -41,6 +42,7 @@ public class MedicineController {
 	public synchronized String ordermedicine(HttpSession session, Model m) {
 		if (session.getAttribute("id") == null)
 			return "choose";
+		Map<Integer, Integer> cart=(Map<Integer,Integer>)session.getAttribute("cart");
 		String page = "paid";
 		List<MedicineOrdered> obj = (List<MedicineOrdered>) session.getAttribute("paired");
 		String stk = "some stocks sold out";
@@ -87,7 +89,7 @@ public class MedicineController {
 			m.addAttribute("oids", oid);
 			session.setAttribute("nostock", "");
 			cart.clear();
-			session.setAttribute("cart", null);
+			session.setAttribute("cart", new HashMap<Integer,Integer>());
 			//// write
 		}
 		session.setAttribute("paired", null);
@@ -102,8 +104,12 @@ public class MedicineController {
 		String stk = "some stocks sold out";
 		Integer si = (Integer) session.getAttribute("cartsize");
 		int i = 0;
+		Map<Integer, Integer> cart=(Map<Integer,Integer>)session.getAttribute("cart");
 		if (cart.size() == 0 || cart.size() < si) {
 			model.addAttribute("errorcart", "some items sold out");
+			cart.clear();
+			session.setAttribute("cart", new HashMap<Integer,Integer>());
+			
 			return "viewcart";
 		}
 		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
@@ -111,7 +117,7 @@ public class MedicineController {
 			if (!(of.stockAvailable(mid1, cart.get(mid1)))) {
 				// System.out.println(mid1 + " srock no");
 				i += 1;
-
+cart.remove(mid1);
 				Optional<MedicineBean> o = md.findById(mid1);
 				if (o.isPresent()) {
 					MedicineBean mbb = o.get();
@@ -124,6 +130,9 @@ public class MedicineController {
 		} // for
 //		System.out.println(stk);
 		if (i != 0) {
+			
+			session.setAttribute("cart", cart);
+			
 			session.setAttribute("nostock", stk);
 			return "viewcart";
 		}
@@ -144,6 +153,7 @@ public class MedicineController {
 	public String addToCart(Integer mid, Integer opt, Model m, HttpSession session) {
 		if (session.getAttribute("id") == null)
 			return "choose";
+		Map<Integer, Integer> cart=(Map<Integer,Integer>)session.getAttribute("cart");
 		cart.put(mid, 1);
 		System.out.println("opt " + opt + " added");
 		session.setAttribute("cart", cart);
@@ -160,6 +170,7 @@ public class MedicineController {
 	public String removeFromCart(Integer mid, Integer opt, Model m, HttpSession session) {
 		if (session.getAttribute("id") == null)
 			return "choose";
+		Map<Integer, Integer> cart=(Map<Integer,Integer>)session.getAttribute("cart");
 		cart.remove(mid);
 		System.out.println("opt " + opt + " remove");
 		session.setAttribute("cart", cart);
@@ -175,6 +186,7 @@ public class MedicineController {
 	public String removeFromCart2(Integer mid, Model m, HttpSession session) {
 		if (session.getAttribute("id") == null)
 			return "choose";
+		Map<Integer, Integer> cart=(Map<Integer,Integer>)session.getAttribute("cart");
 		cart.remove(mid);
 		session.setAttribute("cart", cart);
 		m.addAttribute("sb", new SearchBean());
@@ -206,6 +218,7 @@ public class MedicineController {
 	public String viewCart(Model m, HttpSession session) {
 		if (session.getAttribute("id") == null)
 			return "choose";
+		Map<Integer, Integer> cart=(Map<Integer,Integer>)session.getAttribute("cart");
 		List<MedicineBean> mb = new ArrayList<>();
 		for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
 			Integer mid = entry.getKey();
@@ -237,6 +250,7 @@ public class MedicineController {
 //			
 //		Map<Integer,Integer> o=(Map<Integer,Integer>)session.getAttribute("cart");
 //		
+		 Map<Integer, Integer> cart=(Map<Integer,Integer>)session.getAttribute("cart");
 		if (of.stockAvailable(mid, quantity)) {
 
 			cart.replace(mid, quantity);

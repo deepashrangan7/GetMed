@@ -77,12 +77,17 @@ $btn.addEventListener("click", signIn);
          
           
           </c:if>
+          <c:if test="${result == 'correct' }">
+      
+        <p style="color: green;">Your  Id is  ${mid} 
+          </p>
+          </c:if>
           </div> 
       </div>
 
     
     </div>
-    </div>
+  
       
      
     

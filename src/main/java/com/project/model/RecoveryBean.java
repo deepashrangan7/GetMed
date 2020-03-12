@@ -20,9 +20,6 @@ public class RecoveryBean {
 	
 	private String desgination;
 	
-	private String q1="What is your Nick name?";
-	private String q2="What is your Favourite colour?";
-	private String q3="Who is your Favourite Hero?";
 	
 	@NotBlank(message="Enter Proper Answer")
 	private String a1;

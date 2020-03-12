@@ -110,7 +110,7 @@
 	
 <h4 style="text-align:center;">Your Order is Successful</h4>
 <h4 style="text-align:center;">Your Order Id is : ${oids}</h4>
-	
+	<br/><p style="text-align: center;"><img alt="success" src="success.gif" ></p>
 	<p style="text-align: center;"><a href="/allmed" class="btn btn-outline-success btn-lg">Continue Shopping</a></p>&nbsp;&nbsp;
 <p style="text-align: center;"><a href="/logout" class="btn btn-outline-danger btn-lg">LOGOUT</a></p>
 

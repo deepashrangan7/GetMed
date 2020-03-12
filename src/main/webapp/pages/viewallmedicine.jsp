@@ -121,7 +121,7 @@
 						
 						<c:if test="${fn:length(cart)>0}">
 						<div class="col-auto my-1">
-						<a class="btn btn-success btn-med" href="/viewcart">View Cart</a>
+						<a class="btn btn-success btn-med" href="/viewcart">Order Medicine</a>
 						
 						</div>
 					</c:if>

@@ -313,7 +313,7 @@ public class MainController {
 	@RequestMapping("/forgotusername")
 	public String forgotusername()
 	{
-	System.out.println("asddfg");
+//	System.out.println("asddfg");
 	return "showuserid";
 	}
 

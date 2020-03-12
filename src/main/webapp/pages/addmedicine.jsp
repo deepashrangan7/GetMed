@@ -132,7 +132,7 @@
 
 				<label class="form-input"> <i class="material-icons">person</i>
 					<f:input path="expiryDate" type="date" placeholder="expiry Date"
-						name="expiryDate" /> <span class="label"></span>
+						name="expiryDate" required="true"/> <span class="label"></span>
 					<div class="underline"></div>
 				</label>
 				<p style="color: red;">

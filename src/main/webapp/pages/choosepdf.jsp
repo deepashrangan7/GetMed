@@ -89,7 +89,7 @@ Pdf Generation </h2>
    <option value="sales">Sales</option>
    <option value="date">Expiry Date</option>
  </select> <!-- <span class="label">Select Any one of the well known question</span> -->
-<div class="underline"></div>
+
 
 </label>
 
@@ -105,8 +105,7 @@ Pdf Generation </h2>
 class="btn btn-irenic float-left" tabindex="0">
 <span>Submit</span>
 </button>
-<input type="reset" value="clear" class="btn btn-irenic float-right"
-tabindex="0">
+
 
 
 

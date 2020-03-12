@@ -115,22 +115,12 @@
 						</select>
 
 					</div>
-					<!-- 
-					<div class="col-auto my-1">
-
-						<f:select class="custom-select mr-sm-2"
-							id="inlineFormCustomSelect" path="city" name="city">
-
-							<f:option value="all" selected="true">All</f:option>
-							<f:options items="${cities}" />
-						</f:select>
-					</div>
- -->
+					
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search
 						medicine</button>
 					<c:if test="${fn:length(cart)>0}">
 						<div class="col-auto my-1">
-						<a class="btn btn-success btn-med" href="/viewcart">View Cart</a>
+						<a class="btn btn-success btn-med" href="/viewcart">Order Medicine</a>
 						
 						</div>
 					</c:if>

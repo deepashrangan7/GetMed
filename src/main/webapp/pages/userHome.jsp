@@ -127,11 +127,11 @@
  <br/><br/>
  <div class="container" style="text-align: center">
  
- <a href="/allmed" class="btn btn-outline-info btn-lg">view available medicine</a><br/><br/><br/>
-&nbsp;<a href="#" class="btn btn-outline-info btn-lg">Order Medicine</a><br/><br/><br/>
+ <a href="/allmed" class="btn btn-outline-info btn-lg">view available medicine</a><br/>
+&nbsp;<br/><br/>
  &nbsp;
  <a href="/orderhistory" class="btn btn-outline-info btn-lg">Order History</a><br/><br/><br/>
- &nbsp;<a href="/viewcart" class="btn btn-outline-info btn-lg">view Cart</a><br/><br/><br/>
+ &nbsp;<a href="/viewcart" class="btn btn-outline-info btn-lg">Order Medicine</a><br/><br/><br/>
  
 </div>
 

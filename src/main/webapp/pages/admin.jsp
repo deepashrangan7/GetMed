@@ -119,7 +119,7 @@ String msg="";
 if(i==1)
 	msg="Your Details are Added successfully";
 else if(i==2)
-	msg="Medicine Details Editted Successfully";
+	msg="Medicine Details Edited Successfully";
 else if(i==3)
 	msg="Stock Updated Successfully";
 else

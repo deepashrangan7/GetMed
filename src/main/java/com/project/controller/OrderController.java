@@ -35,6 +35,8 @@ public class OrderController {
 		String page="viewordersad";
 		System.out.println(filter.getFilter());
 		List<OrderBean> ob=null;
+		
+		
 		if(filter.getFilter()==null ||filter.getFilter().equals("all")) {
 			ob=od.findAll();
 		}else if(filter.getFilter().equals("delivered")) {

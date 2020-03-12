@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itextpdf.text.log.SysoCounter;
 import com.project.MailFunction;
 import com.project.model.AdminBean;
 import com.project.model.HelpBean;
@@ -135,25 +136,33 @@ public class MainController {
 	@RequestMapping("/main")
 	public String mainPage(@ModelAttribute("sb") SearchBean sb, @Valid @ModelAttribute("login") LoginBean login,
 			BindingResult br, HttpSession session, Model model) {
-
+		
+		AdminBean ub = adminDao.validateAdmin(login.getEmail().trim(),
+				adminFunction.encryption(login.getPassword()));
+//		System.out.println(login.getEmail()+" "+login.getPassword()+" "+adminFunction.encryption(login.getPassword()));
 		String role = (String) session.getAttribute("role");
-		 Map<Integer, Integer> cart=new HashMap<Integer, Integer>();
+//		System.out.println(role+" role"); 
+		Map<Integer, Integer> cart=new HashMap<Integer, Integer>();
 		session.setAttribute("cart", cart);
 		String page = "admin";
 		session.setAttribute("addm", 0);
+//		System.out.println("untilhere");
+
 		if (br.hasErrors()) {
+//			System.out.println((String)br.getFieldValue("password"));
 			model.addAttribute("err", 0);
 			session.setAttribute("add", 0);
 			return "login";
 		}
-
-		if (role.equals("us")) {
-
-			AdminBean ub = adminDao.validateAdmin(login.getEmail().trim(),
-					adminFunction.encryption(login.getPassword().trim()));
+//System.out.println("until");
+		if (role.equalsIgnoreCase("us")) {
+			
+			System.out.println("us");
+			
 			if (ub == null || ub.getRole() == 1) {
 				model.addAttribute("err", 1);
-//				System.out.println(login.getEmail()+" "+adminFunction.encryption(login.getPassword().trim()));
+			
+				System.out.println(login.getEmail()+" "+adminFunction.encryption(login.getPassword().trim())+"here");
 				return "login";
 			}
 
@@ -163,9 +172,8 @@ public class MainController {
 			session.setAttribute("uname", o.get().getFirstName() + " " + o.get().getLastName());
 			page = "userHome";
 		} else {
-			AdminBean ab = adminDao.validateAdmin(login.getEmail().trim(),
-					adminFunction.encryption(login.getPassword().trim()));
-			if (ab == null || ab.getRole() == 0) {
+			System.out.println("ad");
+			if (ub == null || ub.getRole() == 0) {
 				model.addAttribute("err", 1);
 //				System.out.println(1);
 				session.setAttribute("add", 0);
@@ -191,6 +199,13 @@ public class MainController {
 	public String recovery(@Valid @ModelAttribute("rb") RecoveryBean recoveryBean, BindingResult bindingResult,
 			HttpSession session, Model model) {
 		String page = "recovery";
+		if(recoveryDao.Validateusername(recoveryBean.getA1(), recoveryBean.getA2(),recoveryBean.getA3())!=null)
+		{
+			bindingResult.addError(new FieldError("a1", "a1", "Please Select Different Answer"));
+			
+			return "recovery";
+			
+		}
 		if (bindingResult.hasErrors()) {
 			return "recovery";
 		}

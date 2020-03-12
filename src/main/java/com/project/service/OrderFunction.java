@@ -157,4 +157,19 @@ public class OrderFunction {
 		od.save(ob);
 	}
 
+	
+	public void clearAll() {
+		List<MedicineOrdered> objmd=md.findAll();
+		List<OrderBean> objod=od.findAll();
+		
+		for(OrderBean o:objod) {
+			for(MedicineOrdered o1:objmd) {
+				if(o.getOrderId()==o1.getOid()) {
+					break;
+				}
+				
+			}
+		}
+	}
+	
 }

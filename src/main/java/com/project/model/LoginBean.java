@@ -11,8 +11,7 @@ public class LoginBean {
 	
 	@NotBlank(message = "email cant Be empty")
 	private String email;
-	
-	@Min(value=8,message = "Password must be minimum of length 8")
+	@NotBlank(message = "Password must be 8 Character length")
 	private String password;
 	
 	public String getEmail() {

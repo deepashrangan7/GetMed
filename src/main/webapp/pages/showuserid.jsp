@@ -107,23 +107,29 @@ required="true" /> <span class="label">Enter your answer</span>
 </label> -->
 <div style="text-align: center; color: red;">
 <c:if test="${result == 'wrong' }">
-ENTER THE CORRECT ANSWER FOR ALL THE SECURITY QUESTIONS.
-</c:if>
+<p style="text-align: center;color:red;">ENTER THE CORRECT ANSWER FOR ALL THE SECURITY QUESTIONS.
+</p></c:if>
 </div>
 <br />
 <br />
 
 
 
+<div style="margin-left: 4em;"class="submit-container clearfix d-flex flex-row justify-content-between" style="margin-top: 2rem;">
+
 
 <button role="button" type="submit"
 class="btn btn-irenic float-left" tabindex="0">
 <span>Submit</span>
 </button>
+<%String role=(String)session.getAttribute("role"); %>
+<a  href=<%="/log?role="+role%> class="btn btn-irenic " tabindex="0">
+<span>Back</span>
+</a>
 <input type="reset" value="clear" class="btn btn-irenic float-right"
 tabindex="0">
 
-
+</div>
 
 </form>
 

@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>GetMed Help Center</title>
 
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -53,8 +53,8 @@ border-bottom-right-radius: 0.5rem;
 font-weight:600;
 }
 .contact-form button{
-background: #25274d;
-color: #fff;
+
+
 font-weight: 600;
 width: 25%;
 }
@@ -110,9 +110,13 @@ box-shadow:none;
  </div>
 </div>
 <div class="form-group">        
- <div class="col-sm-offset-2 col-sm-10">
-<button type="submit" class="btn btn-default">Submit</button>
+ <div class="col-sm-offset-2 col-sm-10 submit-container clearfix d-flex flex-row justify-content-between"style="margin-top: 2rem;"" >
+<button type="submit" class="btn btn-secondary">Submit</button>
+ <a type="submit" class="btn btn-secondary" href="/uhome">Back</a>
+ 
  </div>
+ 
+
 </div>
 
 <div style="color: red;text-align: left;padding-left: 0%"> *For more queries don't hesitate to contact 8888888888.</div>

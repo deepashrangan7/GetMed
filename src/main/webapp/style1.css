@@ -20,7 +20,7 @@
             justify-content: center; */
             font-family: 'Source Sans Pro', sans-serif;
             min-height: 100vh;
-            min-width: 60%;
+            min-width: 50%;
         }
 
         h1,
@@ -36,6 +36,19 @@
         /**
  * Tiles
  */
+tbody {
+    display:block;
+    height:200px;
+    overflow:auto;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+thead {
+    
+}
         .tile {
              background-color: #ffffff;
             border-radius: .3rem; 
@@ -43,7 +56,7 @@
             position: relative; */
             float:left;
             width: 40%;
-            min-width: 40%;
+            min-width: 45%;
             max-width: 29rem;
             overflow: hidden;
         }

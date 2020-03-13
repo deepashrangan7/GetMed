@@ -65,8 +65,8 @@ if(add==1)
 %>
     <div class="tile">
      
-      <div class="tile-header">
-       <h2 style="color:black; opacity: .75; font-size: 2rem; display: flex; justify-content: center; align-items: center; height: 100%;text-align: center;"><%=s%> LOG IN</h2>
+      <div class="tile-header" style="text-align: center;padding-left: 29%;">
+       <h2 style="color:black; opacity: .75; font-size: 2rem; display: flex; justify-content: center; align-items: center; height: 100%;text-align: right;"><%=s%> LOG IN</h2>
       </div>
       
       <div class="tile-body">
@@ -84,11 +84,12 @@ if(add==1)
            </label>
           <p style="color:red;"> <f:errors path="password"></f:errors>
           </p>
-          <div class="submit-container clearfix" style="margin-top: 2rem;">          
-            <input  role="button" type="submit" class="btn btn-outline-dark float-left btn-lg" tabindex="0" value="login"/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <br/>
+          <div style="margin-left: 4em;"class="submit-container clearfix d-flex flex-row justify-content-between" style="margin-top: 2rem;">          
+            <input  role="button" type="submit" class="btn btn-outline-dark  btn-lg" tabindex="0" value="login"/>
+
 <a href="/" class="btn btn-outline-dark btn-lg">Back</a>       
-            <a  href="/sign" role="button" type="button" class="btn btn-outline-dark float-right btn-lg" tabindex="0">
+            <a  href="/sign"   class="btn btn-outline-dark  btn-lg" tabindex="0">
              SignUp
             </a>
              

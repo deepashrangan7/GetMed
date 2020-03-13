@@ -51,7 +51,7 @@ crossorigin="anonymous"></script>
 <br />
 <div class="tile">
 
-<div class="tile-header">
+<div class="tile-header"style="padding-left: 26%;">
 <h2
 style="color: teal; opacity: .75; font-size: 2rem; display: flex; justify-content: center; align-items: center; height: 100%;">
 Recovery Question</h2>
@@ -70,7 +70,7 @@ Email Id?</span>
 
 
 <label class="form-input"> <i class="material-icons">person</i>
-<br>&nbsp &nbsp &nbsp &nbsp
+<br>&nbsp; &nbsp; &nbsp; &nbsp;
 <select id="question" name="question">
    <option value="q1">What is your Nick name?</option>
    <option value="q2">What is your Favourite colour?</option>
@@ -87,7 +87,7 @@ required="true" /> <span class="label">Enter your answer</span>
 </label>
 <div style="text-align: center; color: red;">
 <c:if test="${result == 'wrong' }">
-ENTER CORRECT USERNAME AND PASSWORD
+<p style="text-align: center;color:red;">Enter Correct Answer</p>
 </c:if>
 </div>
 <br />
@@ -95,15 +95,18 @@ ENTER CORRECT USERNAME AND PASSWORD
 
 
 
-
+<div style="margin-left: 4em;"class="submit-container clearfix d-flex flex-row justify-content-between" style="margin-top: 2rem;">
 <button role="button" type="submit"
 class="btn btn-irenic float-left" tabindex="0">
 <span>Submit</span>
-</button>
+</button >
+ <%String role=(String)session.getAttribute("role"); %>
+<a  href=<%="/log?role="+role%> class="btn btn-irenic " tabindex="0">
+<span>Back</span>
+</a>
 <input type="reset" value="clear" class="btn btn-irenic float-right"
 tabindex="0">
-
-
+</div>
 
 </form>
 

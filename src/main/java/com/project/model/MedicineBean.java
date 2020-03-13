@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -56,6 +57,7 @@ public class MedicineBean {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Future(message = "Already Medicine Expired")
+	@NotNull(message="Enter a date")
 	private Date expiryDate;
 
 	

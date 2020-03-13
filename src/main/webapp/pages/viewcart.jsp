@@ -178,7 +178,7 @@
 		<br/><br/>
 		<p style="text-align: center;font-size: 22px"><a href="/pay" class="btn btn-outline-success btn-md">Proceed To Pay</a></p>
 		<br/><br/>
-		<p style="text-align: center;font-size: 22px"><a href="/viewmedicine" class="btn btn-outline-success btn-md">Continue Shopping</a></p>
+		<p style="text-align: center;font-size: 22px"><a href="/allmed" class="btn btn-outline-success btn-md">Continue Shopping</a></p>
 		
 		</c:otherwise>
 	</c:choose>

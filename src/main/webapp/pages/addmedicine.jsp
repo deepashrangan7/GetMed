@@ -132,7 +132,7 @@
 
 				<label class="form-input"> <i class="material-icons">person</i>
 					<f:input path="expiryDate" type="date" placeholder="expiry Date"
-						name="expiryDate" required="true"/> <span class="label"></span>
+						name="expiryDate" /> <span class="label"></span>
 					<div class="underline"></div>
 				</label>
 				<p style="color: red;">
@@ -144,7 +144,7 @@
 					<button id="submit" role="button" type="submit"
 						class="btn btn-irenic float-left btn-lg" tabindex="0">
 						<span>Submit</span>
-					</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				
 <a class="btn btn-irenic float-center btn-lg" href="/adminhomepage">Back</a>
 				

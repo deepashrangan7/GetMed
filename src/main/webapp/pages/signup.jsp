@@ -56,9 +56,9 @@ alert("hii")
     <br />
     <div class="tile">
 
-        <div class="tile-header">
+        <div class="tile-header" style="padding-left: 29%;">
             <h2
-                style="color:black; opacity: .75; font-size: 4rem; display: flex; justify-content: center; align-items: center; height: 100%;justify-content: center;">
+                style="color:black; opacity: .75; font-size: 300%; display: flex; justify-content: center; align-items: center; height: 100%;justify-content: center;">
                 SIGN UP</h2>
         </div>
 

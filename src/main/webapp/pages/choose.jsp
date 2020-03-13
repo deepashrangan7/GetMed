@@ -52,7 +52,7 @@ $btn.addEventListener("click", signIn);
      
         <div class="container" style="width:120%;">
          
-          <h2 style="color:black; opacity: .75; font-size: 2rem; display: flex; height: 100%; text-align: center;">Choose Role</h2>
+          <h2 style="color:black; opacity: .75; font-size: 2rem; display: flex; height: 100%; margin-left: 5em;">Choose Role</h2>
      
           <br /><br />
           
@@ -64,8 +64,8 @@ $btn.addEventListener("click", signIn);
           
           <c:if test="${updatepass == 'yes' }">
           
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PASSWORD UPDATED SUCCESSFULLY
-          
+        <p style="color:green;margin-left: 12em;">PASSWORD UPDATED SUCCESSFULLY
+          </p>
           </c:if>
           </div> 
           <!--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -->

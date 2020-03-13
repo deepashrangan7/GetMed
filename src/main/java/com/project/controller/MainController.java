@@ -294,9 +294,7 @@ public class MainController {
 	@RequestMapping("/pdf")
 	public String pdf()
 	{
-	System.out.println("asddfg");
-
-
+	
 	return "choosepdf";
 	}
 

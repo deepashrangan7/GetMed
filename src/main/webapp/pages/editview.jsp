@@ -10,6 +10,15 @@
 <html lang="en">
 
 <head>
+
+<style>
+#left{
+float:left;
+}
+#right{
+float:right;
+}
+</style>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -31,8 +40,129 @@
 </head>
 <body>
 
+	<nav class="navbar navbar-expand-lg fixed-top bg-dark">
 
-          <h4 class="modal-title">Medicine Details</h4>
+
+
+		<button class="navbar-toggler " type="button" data-toggle="collapse"
+			data-target="#navigation-bar" aria-controls="navbarTogglerDemo03"
+			aria-expanded="false" aria-label="Toggle navigation">
+
+			<span class="navbar-toggler-icon text-light">&#9776;</span>
+
+		</button>
+
+		<img src="logo2.png" alt="logo" style="height: 5%; width: 5%" /> <a
+			class="navbar-brand text-light" href="/adminhomepage">GetMed</a>
+
+
+
+
+
+		<div class="collapse navbar-collapse" id="navigation-bar">
+
+			<ul class="navbar-nav ml-auto ">
+
+				<li><c:if test="${ notic==0 && noti!=0}">
+
+						<a href="/notification" class="nav-link  text-light notification">
+
+							<span>NOTIFICATION</span> <span class="badge">${noti}</span>
+
+						</a>
+					</c:if> <c:if test="${notic==0 && noti==0}">
+
+						<a href="/notification" class="nav-link  text-light notification">
+
+							<span>NOTIFICATION</span>
+
+						</a>
+					</c:if></li>&nbsp;&nbsp;
+
+
+
+				<li class="nav-item"><a class="nav-link  text-light"
+					href="/logout">LOGOUT</a></li>
+
+
+
+			</ul>
+
+		</div>
+
+	</nav>
+	
+	
+	
+	<br><br><br>
+	<div class="card text-center" >
+  <div class="card-header">
+   <p style="margin-right:6%; font-weight:bolder;font-size:25px"> Medicine Details</p>
+  </div>
+  <div class="card-body" style="margin-left:30%">
+    <h5 class="card-title" style="margin-right:55%"><c:out value="${meds.name}"/></h5>
+   <table><tr>
+        <td id="left">Medicine Id: </td>
+        <td id="right"><c:out value="${meds.mid}"/></td>
+        </tr>
+        
+        <tr>
+        <td id="left">Medicine Name: </td>
+        <td id="right"><c:out value="${meds.name}"/></td>
+        </tr>
+        
+        <tr>
+        <td id="left">Medicine Brand: </td>
+        <td id="right"><c:out value="${meds.brand}"/></td>
+        </tr>
+        
+        <tr >
+        <td id="left">Medicine Price: </td>
+        <td id="right"><c:out value="${meds.price}"/></td>
+        </tr>
+        
+        <tr>
+        <td id="left">Medicine Stock: </td>
+        <td id="right"><c:out value="${meds.stock}"/></td>
+        </tr>
+        
+        <tr>
+        <td id="left">Medicine Type: </td>
+        <td id="right"><c:out value="${meds.type}"/></td>
+        </tr>
+        
+        <tr>
+        <td id="left">For Disease : </td>
+        <td id="right"><c:out value="${meds.disease}"/></td>
+        </tr>
+        
+        <tr>
+        <td id="left">Medicine Sold: </td>
+        <td id="right"><c:out value="${meds.sales}"/></td>
+        </tr>
+        <tr>
+        <td id="left">City Of Sale: </td>
+        <td id="right"><c:out value="${meds.city}"/></td>
+        </tr>
+        
+        <tr>
+        <td id="left">Medicine Expiry Date: </td>
+        <td id="right"><c:out value="${meds.expiryDate}"/></td>
+        </tr>
+        
+        </table>
+      
+    <a href="editMedicine?mid=${meds.mid}" id="left"class="btn btn-primary">Edit</a>
+    <a href="adhome" class="btn btn-primary" id="right" style="margin-right:54%">Back</a>
+
+  </div>
+
+</div>
+	
+	
+	
+
+         <%--  <h4 class="modal-title">Medicine Details</h4>
           
         
         <div class="modal-body">
@@ -92,13 +222,13 @@
   
 
 
+ --%>
 
 
 
 
 
-
-<br/>
+<%-- <br/>
 					<a href="editMedicine?mid=${meds.mid}" id="submit" role="button" type="submit"
 						class="btn btn-irenic float-left btn-lg" tabindex="0">
 						<span>edit</span>
@@ -107,7 +237,7 @@
 						class="btn btn-irenic float-right btn-lg" tabindex="0">
 	Cancel	</a>
 
-
+ --%>
 
 
 </body>

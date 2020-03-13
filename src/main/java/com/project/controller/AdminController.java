@@ -147,7 +147,7 @@ public class AdminController {
 			}
 		}
 		session.setAttribute("addm", 2);
-		return "admin";
+		return "redirect:adminhomepage";
 
 	}
 
@@ -198,7 +198,7 @@ public class AdminController {
 		medicineDao.save(medicineBean);
 
 		session.setAttribute("addm", 3);
-		return "admin";
+		return "redirect:adminhomepage";
 	}
 
 	@RequestMapping("/viewupdate")

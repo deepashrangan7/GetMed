@@ -86,12 +86,13 @@ if(add==1)
           </p>
           <div class="submit-container clearfix" style="margin-top: 2rem;">          
             <input  role="button" type="submit" class="btn btn-outline-dark float-left btn-lg" tabindex="0" value="login"/>
-            
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/" class="btn btn-outline-dark btn-lg">Back</a>       
             <a  href="/sign" role="button" type="button" class="btn btn-outline-dark float-right btn-lg" tabindex="0">
              SignUp
             </a>
-              <br/><br/>
-              <p style="text-align: center;"><a href="/" class="btn btn-outline-dark btn-lg">Back</a></p>
+             
+              
             
             
             <div class="login-pending">

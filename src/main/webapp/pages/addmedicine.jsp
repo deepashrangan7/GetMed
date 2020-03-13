@@ -144,13 +144,14 @@
 					<button id="submit" role="button" type="submit"
 						class="btn btn-irenic float-left btn-lg" tabindex="0">
 						<span>Submit</span>
-					</button>
+					</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				
+<a class="btn btn-irenic float-center btn-lg" href="/adminhomepage">Back</a>
+				
 					<a id="submit" href="/addm"
 						class="btn btn-irenic float-right btn-lg" tabindex="0">
 Clear</a>
-<br/><br/><br/>
-<p style="text-align: center;"> <a class="btn btn-irenic  btn-lg" href="/adminhomepage">Back</a></p>
-					<div class="login-pending">
+<br/><br/><br/>	<div class="login-pending">
 						<div class=spinner>
 							<span class="dot1"></span> <span class="dot2"></span>
 						</div>
